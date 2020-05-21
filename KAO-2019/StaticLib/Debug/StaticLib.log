@@ -1,0 +1,30 @@
+﻿Сборка начата Чт 19.12.19 23:46:39.
+     1>Проект "D:\2 курс\3 семестр\KAO-2019\StaticLib\StaticLib.vcxproj" в узле 2 (целевые объекты Rebuild).
+     1>_PrepareForClean:
+         Файл "Debug\StaticLib.tlog\StaticLib.lastbuildstate" удаляется.
+       InitializeBuildStatus:
+         Создание "Debug\StaticLib.tlog\unsuccessfulbuild", так как было задано "AlwaysCreate".
+       ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Tools\MSVC\14.16.27023\bin\HostX86\x86\CL.exe /c /ZI /JMC /nologo /W3 /WX- /diagnostics:classic /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _LIB /D _UNICODE /D UNICODE /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /permissive- /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Debug\\" /Fd"Debug\StaticLib.pdb" /Gd /TP /analyze- /FC /errorReport:prompt StaticLib.cpp
+         StaticLib.cpp
+     1>d:\2 курс\3 семестр\kao-2019\staticlib\staticlib.cpp(23): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+       Lib:
+         C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Tools\MSVC\14.16.27023\bin\HostX86\x86\Lib.exe /OUT:"D:\2 курс\3 семестр\KAO-2019\Debug\StaticLib.lib" /NOLOGO Debug\StaticLib.obj
+         StaticLib.vcxproj -> D:\2 курс\3 семестр\KAO-2019\Debug\StaticLib.lib
+       CopyFilesToOutputDirectory:
+         Копирование файла из "Debug\StaticLib.pdb" в "D:\2 курс\3 семестр\KAO-2019\Debug\StaticLib.pdb".
+       FinalizeBuildStatus:
+         Файл "Debug\StaticLib.tlog\unsuccessfulbuild" удаляется.
+         Обращение к "Debug\StaticLib.tlog\StaticLib.lastbuildstate".
+     1>Сборка проекта "D:\2 курс\3 семестр\KAO-2019\StaticLib\StaticLib.vcxproj" завершена (целевые объекты Rebuild).
+
+Сборка успешно завершена.
+
+       "D:\2 курс\3 семестр\KAO-2019\StaticLib\StaticLib.vcxproj" (целевой объект Rebuild ) (1) ->
+       (ClCompile конечный объект) -> 
+         d:\2 курс\3 семестр\kao-2019\staticlib\staticlib.cpp(23): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+
+    Предупреждений: 1
+    Ошибок: 0
+
+Прошло времени 00:00:06.10

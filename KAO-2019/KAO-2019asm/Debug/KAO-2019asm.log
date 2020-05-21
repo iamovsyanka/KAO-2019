@@ -1,0 +1,2 @@
+﻿LINK : warning LNK4098: библиотека по умолчанию "libucrt.lib" конфликтует с использованием других библиотек; используйте /NODEFAULTLIB:library
+  KAO-2019asm.vcxproj -> C:\Users\Onya\Desktop\Курсовой\KAO-2019\Debug\KAO-2019asm.exe

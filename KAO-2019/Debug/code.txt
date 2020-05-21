@@ -1,0 +1,50 @@
+func int! math [int! one & int! two]
+{
+var int! result.
+result = (one + two) / 1.
+return[result].
+}
+
+func bool! fcheck [int! numb]
+{
+	var bool! boo.
+	var int! res.
+	res = numb % 2.
+	check [ res ? 0 ]
+	{
+		boo = true.
+	}
+	otherwise
+	{
+		boo = false.
+	}
+	return [boo].
+}
+
+go
+{
+	var int! f = math [2 & 1].
+	out [f]. Line.
+	var int! ran = random [5].
+	out [ran]. Line.
+	var str! len = "my first kursach".
+	var bool! boo = true.
+	check [ boo ]
+	{
+		out [len]. Line.
+	}
+	otherwise
+	{
+		out ["help"]. Line.
+	}
+	var bool! eo = fcheck [3].
+	check [ eo ]
+	{
+		out ["even"]. Line.
+	}
+	otherwise
+	{
+		out ["odd"]. Line.
+	}
+	var int! x = 0x24.
+}

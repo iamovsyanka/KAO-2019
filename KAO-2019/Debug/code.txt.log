@@ -1,0 +1,1754 @@
+---- Протокол --------------------------------------------------------08.01.2020 15:27:17
+
+---- Параметры --------------------------------------------------------------------------
+-log: ../Debug/code.txt.log
+-out: Out.asm
+-in:  ../Debug/code.txt
+
+---- Исходные данные --------------------------------------------------------------------
+Количество символов: 632
+Проигнорировано    : 0
+Количество строк   : 49
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Таблица идентификаторов ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-----------------------------------------------------------------------------------------
+№ | Идентификатор | Тип данных | Тип идентификатора | Индекс в ТЛ | Значение/Параметры
+-----------------------------------------------------------------------------------------
+0 | math          | integer    | функция            | 2           | 1:integer 2:integer 
+1 | mathone       | integer    | параметр           | 5           | -
+2 | mathtwo       | integer    | параметр           | 8           | -
+3 | mathresult    | integer    | переменная         | 13          | 0                 
+4 | L1            | integer    | литерал            | 23          | 0                 
+5 | fcheck        | bool       | функция            | 33          | 1:integer 
+6 | fchecknumb    | integer    | параметр           | 36          | -
+7 | fcheckboo     | bool       | переменная         | 41          | 0                 
+8 | fcheckres     | integer    | переменная         | 45          | 0                 
+9 | L2            | integer    | литерал            | 51          | 2                 
+10 | L3            | bool       | литерал            | 62          | 1                 
+11 | L4            | bool       | литерал            | 69          | 0                 
+12 | gof           | integer    | переменная         | 82          | 0                 
+13 | L5            | integer    | литерал            | 88          | 1                 
+14 | goran         | integer    | переменная         | 100         | 0                 
+15 | random        | integer    | библ. функция      | 102         | 1:integer 
+16 | L6            | integer    | литерал            | 104         | 5                 
+17 | golen         | string     | переменная         | 116         | [0]""
+18 | L7            | string     | литерал            | 118         | [16]"my first kursach"
+19 | goboo         | bool       | переменная         | 122         | 0                 
+20 | L8            | string     | литерал            | 143         | [4]"help"
+21 | goeo          | bool       | переменная         | 151         | 0                 
+22 | L9            | integer    | литерал            | 155         | 3                 
+23 | L10           | string     | литерал            | 165         | [4]"even"
+24 | L11           | string     | литерал            | 175         | [3]"odd"
+25 | gox           | integer    | переменная         | 183         | 0                 
+26 | L12           | integer    | литерал            | 185         | 36                
+-----------------------------------------------------------------------------------------
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Таблица лексем ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+fti[ti&ti]
+2 {
+3 vti.
+4 i=(isi)sl.
+5 r[i].
+6 }
+8 fti[ti]
+9 {
+10 vti.
+11 vti.
+12 i=isl.
+13 c[ibl]
+14 {
+15 i=l.
+16 }
+17 u
+18 {
+19 i=l.
+20 }
+21 r[i].
+22 }
+24 g
+25 {
+26 vti=i[l&l].
+27 o[i].n.
+28 vti=![l].
+29 o[i].n.
+30 vti=l.
+31 vti=l.
+32 c[i]
+33 {
+34 o[i].n.
+35 }
+36 u
+37 {
+38 o[l].n.
+39 }
+40 vti=i[l].
+41 c[i]
+42 {
+43 o[l].n.
+44 }
+45 u
+46 {
+47 o[l].n.
+48 }
+49 vti=l.
+50 }
+
+------------------------- ТРАССИРОВКА СИНТАКСИЧЕСКОГО АНАЛИЗА ---------------------------
+-----------------------------------------------------------------------------------------
+ Шаг | Правило                   | Входная лента                  | Стек                
+-----------------------------------------------------------------------------------------
+0000 | S->ftiFBS                 | fti[ti&ti]{vti.i=(isi)sl.      | S$                  
+0000 | SAVESTATE: 0001           |                                |
+0000 |                           | fti[ti&ti]{vti.i=(isi)sl.      | ftiFBS$             
+0001 |                           | ti[ti&ti]{vti.i=(isi)sl.r      | tiFBS$              
+0002 |                           | i[ti&ti]{vti.i=(isi)sl.r[      | iFBS$               
+0003 |                           | [ti&ti]{vti.i=(isi)sl.r[i      | FBS$                
+0004 | F->[P]                    | [ti&ti]{vti.i=(isi)sl.r[i      | FBS$                
+0004 | SAVESTATE: 0002           |                                |
+0004 |                           | [ti&ti]{vti.i=(isi)sl.r[i      | [P]BS$              
+0005 |                           | ti&ti]{vti.i=(isi)sl.r[i]      | P]BS$               
+0006 | P->ti                     | ti&ti]{vti.i=(isi)sl.r[i]      | P]BS$               
+0006 | SAVESTATE: 0003           |                                |
+0006 |                           | ti&ti]{vti.i=(isi)sl.r[i]      | ti]BS$              
+0007 |                           | i&ti]{vti.i=(isi)sl.r[i].      | i]BS$               
+0008 |                           | &ti]{vti.i=(isi)sl.r[i].}      | ]BS$                
+0009 | TS_NOK/NS_NORULECHAIN     |                                |
+0009 | RESSTATE                  |                                |
+0009 |                           | ti&ti]{vti.i=(isi)sl.r[i]      | P]BS$               
+0010 | P->ti&P                   | ti&ti]{vti.i=(isi)sl.r[i]      | P]BS$               
+0010 | SAVESTATE: 0003           |                                |
+0010 |                           | ti&ti]{vti.i=(isi)sl.r[i]      | ti&P]BS$            
+0011 |                           | i&ti]{vti.i=(isi)sl.r[i].      | i&P]BS$             
+0012 |                           | &ti]{vti.i=(isi)sl.r[i].}      | &P]BS$              
+0013 |                           | ti]{vti.i=(isi)sl.r[i].}f      | P]BS$               
+0014 | P->ti                     | ti]{vti.i=(isi)sl.r[i].}f      | P]BS$               
+0014 | SAVESTATE: 0004           |                                |
+0014 |                           | ti]{vti.i=(isi)sl.r[i].}f      | ti]BS$              
+0015 |                           | i]{vti.i=(isi)sl.r[i].}ft      | i]BS$               
+0016 |                           | ]{vti.i=(isi)sl.r[i].}fti      | ]BS$                
+0017 |                           | {vti.i=(isi)sl.r[i].}fti[      | BS$                 
+0018 | B->{Nr[I].}               | {vti.i=(isi)sl.r[i].}fti[      | BS$                 
+0018 | SAVESTATE: 0005           |                                |
+0018 |                           | {vti.i=(isi)sl.r[i].}fti[      | {Nr[I].}S$          
+0019 |                           | vti.i=(isi)sl.r[i].}fti[t      | Nr[I].}S$           
+0020 | N->vti.N                  | vti.i=(isi)sl.r[i].}fti[t      | Nr[I].}S$           
+0020 | SAVESTATE: 0006           |                                |
+0020 |                           | vti.i=(isi)sl.r[i].}fti[t      | vti.Nr[I].}S$       
+0021 |                           | ti.i=(isi)sl.r[i].}fti[ti      | ti.Nr[I].}S$        
+0022 |                           | i.i=(isi)sl.r[i].}fti[ti]      | i.Nr[I].}S$         
+0023 |                           | .i=(isi)sl.r[i].}fti[ti]{      | .Nr[I].}S$          
+0024 |                           | i=(isi)sl.r[i].}fti[ti]{v      | Nr[I].}S$           
+0025 | N->i=E.N                  | i=(isi)sl.r[i].}fti[ti]{v      | Nr[I].}S$           
+0025 | SAVESTATE: 0007           |                                |
+0025 |                           | i=(isi)sl.r[i].}fti[ti]{v      | i=E.Nr[I].}S$       
+0026 |                           | =(isi)sl.r[i].}fti[ti]{vt      | =E.Nr[I].}S$        
+0027 |                           | (isi)sl.r[i].}fti[ti]{vti      | E.Nr[I].}S$         
+0028 | E->(E)                    | (isi)sl.r[i].}fti[ti]{vti      | E.Nr[I].}S$         
+0028 | SAVESTATE: 0008           |                                |
+0028 |                           | (isi)sl.r[i].}fti[ti]{vti      | (E).Nr[I].}S$       
+0029 |                           | isi)sl.r[i].}fti[ti]{vti.      | E).Nr[I].}S$        
+0030 | E->i                      | isi)sl.r[i].}fti[ti]{vti.      | E).Nr[I].}S$        
+0030 | SAVESTATE: 0009           |                                |
+0030 |                           | isi)sl.r[i].}fti[ti]{vti.      | i).Nr[I].}S$        
+0031 |                           | si)sl.r[i].}fti[ti]{vti.v      | ).Nr[I].}S$         
+0032 | TS_NOK/NS_NORULECHAIN     |                                |
+0032 | RESSTATE                  |                                |
+0032 |                           | isi)sl.r[i].}fti[ti]{vti.      | E).Nr[I].}S$        
+0033 | E->iK                     | isi)sl.r[i].}fti[ti]{vti.      | E).Nr[I].}S$        
+0033 | SAVESTATE: 0009           |                                |
+0033 |                           | isi)sl.r[i].}fti[ti]{vti.      | iK).Nr[I].}S$       
+0034 |                           | si)sl.r[i].}fti[ti]{vti.v      | K).Nr[I].}S$        
+0035 | TNS_NORULECHAIN/NS_NORULE |                                |
+0035 | RESSTATE                  |                                |
+0035 |                           | isi)sl.r[i].}fti[ti]{vti.      | E).Nr[I].}S$        
+0036 | E->iM                     | isi)sl.r[i].}fti[ti]{vti.      | E).Nr[I].}S$        
+0036 | SAVESTATE: 0009           |                                |
+0036 |                           | isi)sl.r[i].}fti[ti]{vti.      | iM).Nr[I].}S$       
+0037 |                           | si)sl.r[i].}fti[ti]{vti.v      | M).Nr[I].}S$        
+0038 | M->sE                     | si)sl.r[i].}fti[ti]{vti.v      | M).Nr[I].}S$        
+0038 | SAVESTATE: 0010           |                                |
+0038 |                           | si)sl.r[i].}fti[ti]{vti.v      | sE).Nr[I].}S$       
+0039 |                           | i)sl.r[i].}fti[ti]{vti.vt      | E).Nr[I].}S$        
+0040 | E->i                      | i)sl.r[i].}fti[ti]{vti.vt      | E).Nr[I].}S$        
+0040 | SAVESTATE: 0011           |                                |
+0040 |                           | i)sl.r[i].}fti[ti]{vti.vt      | i).Nr[I].}S$        
+0041 |                           | )sl.r[i].}fti[ti]{vti.vti      | ).Nr[I].}S$         
+0042 |                           | sl.r[i].}fti[ti]{vti.vti.      | .Nr[I].}S$          
+0043 | TS_NOK/NS_NORULECHAIN     |                                |
+0043 | RESSTATE                  |                                |
+0043 |                           | i)sl.r[i].}fti[ti]{vti.vt      | E).Nr[I].}S$        
+0044 | E->iK                     | i)sl.r[i].}fti[ti]{vti.vt      | E).Nr[I].}S$        
+0044 | SAVESTATE: 0011           |                                |
+0044 |                           | i)sl.r[i].}fti[ti]{vti.vt      | iK).Nr[I].}S$       
+0045 |                           | )sl.r[i].}fti[ti]{vti.vti      | K).Nr[I].}S$        
+0046 | TNS_NORULECHAIN/NS_NORULE |                                |
+0046 | RESSTATE                  |                                |
+0046 |                           | i)sl.r[i].}fti[ti]{vti.vt      | E).Nr[I].}S$        
+0047 | E->iM                     | i)sl.r[i].}fti[ti]{vti.vt      | E).Nr[I].}S$        
+0047 | SAVESTATE: 0011           |                                |
+0047 |                           | i)sl.r[i].}fti[ti]{vti.vt      | iM).Nr[I].}S$       
+0048 |                           | )sl.r[i].}fti[ti]{vti.vti      | M).Nr[I].}S$        
+0049 | TNS_NORULECHAIN/NS_NORULE |                                |
+0049 | RESSTATE                  |                                |
+0049 |                           | i)sl.r[i].}fti[ti]{vti.vt      | E).Nr[I].}S$        
+0050 | E->iKM                    | i)sl.r[i].}fti[ti]{vti.vt      | E).Nr[I].}S$        
+0050 | SAVESTATE: 0011           |                                |
+0050 |                           | i)sl.r[i].}fti[ti]{vti.vt      | iKM).Nr[I].}S$      
+0051 |                           | )sl.r[i].}fti[ti]{vti.vti      | KM).Nr[I].}S$       
+0052 | TNS_NORULECHAIN/NS_NORULE |                                |
+0052 | RESSTATE                  |                                |
+0052 |                           | i)sl.r[i].}fti[ti]{vti.vt      | E).Nr[I].}S$        
+0053 | TNS_NORULECHAIN/NS_NORULE |                                |
+0053 | RESSTATE                  |                                |
+0053 |                           | si)sl.r[i].}fti[ti]{vti.v      | M).Nr[I].}S$        
+0054 | M->sEM                    | si)sl.r[i].}fti[ti]{vti.v      | M).Nr[I].}S$        
+0054 | SAVESTATE: 0010           |                                |
+0054 |                           | si)sl.r[i].}fti[ti]{vti.v      | sEM).Nr[I].}S$      
+0055 |                           | i)sl.r[i].}fti[ti]{vti.vt      | EM).Nr[I].}S$       
+0056 | E->i                      | i)sl.r[i].}fti[ti]{vti.vt      | EM).Nr[I].}S$       
+0056 | SAVESTATE: 0011           |                                |
+0056 |                           | i)sl.r[i].}fti[ti]{vti.vt      | iM).Nr[I].}S$       
+0057 |                           | )sl.r[i].}fti[ti]{vti.vti      | M).Nr[I].}S$        
+0058 | TNS_NORULECHAIN/NS_NORULE |                                |
+0058 | RESSTATE                  |                                |
+0058 |                           | i)sl.r[i].}fti[ti]{vti.vt      | EM).Nr[I].}S$       
+0059 | E->iK                     | i)sl.r[i].}fti[ti]{vti.vt      | EM).Nr[I].}S$       
+0059 | SAVESTATE: 0011           |                                |
+0059 |                           | i)sl.r[i].}fti[ti]{vti.vt      | iKM).Nr[I].}S$      
+0060 |                           | )sl.r[i].}fti[ti]{vti.vti      | KM).Nr[I].}S$       
+0061 | TNS_NORULECHAIN/NS_NORULE |                                |
+0061 | RESSTATE                  |                                |
+0061 |                           | i)sl.r[i].}fti[ti]{vti.vt      | EM).Nr[I].}S$       
+0062 | E->iM                     | i)sl.r[i].}fti[ti]{vti.vt      | EM).Nr[I].}S$       
+0062 | SAVESTATE: 0011           |                                |
+0062 |                           | i)sl.r[i].}fti[ti]{vti.vt      | iMM).Nr[I].}S$      
+0063 |                           | )sl.r[i].}fti[ti]{vti.vti      | MM).Nr[I].}S$       
+0064 | TNS_NORULECHAIN/NS_NORULE |                                |
+0064 | RESSTATE                  |                                |
+0064 |                           | i)sl.r[i].}fti[ti]{vti.vt      | EM).Nr[I].}S$       
+0065 | E->iKM                    | i)sl.r[i].}fti[ti]{vti.vt      | EM).Nr[I].}S$       
+0065 | SAVESTATE: 0011           |                                |
+0065 |                           | i)sl.r[i].}fti[ti]{vti.vt      | iKMM).Nr[I].}S$     
+0066 |                           | )sl.r[i].}fti[ti]{vti.vti      | KMM).Nr[I].}S$      
+0067 | TNS_NORULECHAIN/NS_NORULE |                                |
+0067 | RESSTATE                  |                                |
+0067 |                           | i)sl.r[i].}fti[ti]{vti.vt      | EM).Nr[I].}S$       
+0068 | TNS_NORULECHAIN/NS_NORULE |                                |
+0068 | RESSTATE                  |                                |
+0068 |                           | si)sl.r[i].}fti[ti]{vti.v      | M).Nr[I].}S$        
+0069 | TNS_NORULECHAIN/NS_NORULE |                                |
+0069 | RESSTATE                  |                                |
+0069 |                           | isi)sl.r[i].}fti[ti]{vti.      | E).Nr[I].}S$        
+0070 | E->iKM                    | isi)sl.r[i].}fti[ti]{vti.      | E).Nr[I].}S$        
+0070 | SAVESTATE: 0009           |                                |
+0070 |                           | isi)sl.r[i].}fti[ti]{vti.      | iKM).Nr[I].}S$      
+0071 |                           | si)sl.r[i].}fti[ti]{vti.v      | KM).Nr[I].}S$       
+0072 | TNS_NORULECHAIN/NS_NORULE |                                |
+0072 | RESSTATE                  |                                |
+0072 |                           | isi)sl.r[i].}fti[ti]{vti.      | E).Nr[I].}S$        
+0073 | TNS_NORULECHAIN/NS_NORULE |                                |
+0073 | RESSTATE                  |                                |
+0073 |                           | (isi)sl.r[i].}fti[ti]{vti      | E.Nr[I].}S$         
+0074 | E->(E)M                   | (isi)sl.r[i].}fti[ti]{vti      | E.Nr[I].}S$         
+0074 | SAVESTATE: 0008           |                                |
+0074 |                           | (isi)sl.r[i].}fti[ti]{vti      | (E)M.Nr[I].}S$      
+0075 |                           | isi)sl.r[i].}fti[ti]{vti.      | E)M.Nr[I].}S$       
+0076 | E->i                      | isi)sl.r[i].}fti[ti]{vti.      | E)M.Nr[I].}S$       
+0076 | SAVESTATE: 0009           |                                |
+0076 |                           | isi)sl.r[i].}fti[ti]{vti.      | i)M.Nr[I].}S$       
+0077 |                           | si)sl.r[i].}fti[ti]{vti.v      | )M.Nr[I].}S$        
+0078 | TS_NOK/NS_NORULECHAIN     |                                |
+0078 | RESSTATE                  |                                |
+0078 |                           | isi)sl.r[i].}fti[ti]{vti.      | E)M.Nr[I].}S$       
+0079 | E->iK                     | isi)sl.r[i].}fti[ti]{vti.      | E)M.Nr[I].}S$       
+0079 | SAVESTATE: 0009           |                                |
+0079 |                           | isi)sl.r[i].}fti[ti]{vti.      | iK)M.Nr[I].}S$      
+0080 |                           | si)sl.r[i].}fti[ti]{vti.v      | K)M.Nr[I].}S$       
+0081 | TNS_NORULECHAIN/NS_NORULE |                                |
+0081 | RESSTATE                  |                                |
+0081 |                           | isi)sl.r[i].}fti[ti]{vti.      | E)M.Nr[I].}S$       
+0082 | E->iM                     | isi)sl.r[i].}fti[ti]{vti.      | E)M.Nr[I].}S$       
+0082 | SAVESTATE: 0009           |                                |
+0082 |                           | isi)sl.r[i].}fti[ti]{vti.      | iM)M.Nr[I].}S$      
+0083 |                           | si)sl.r[i].}fti[ti]{vti.v      | M)M.Nr[I].}S$       
+0084 | M->sE                     | si)sl.r[i].}fti[ti]{vti.v      | M)M.Nr[I].}S$       
+0084 | SAVESTATE: 0010           |                                |
+0084 |                           | si)sl.r[i].}fti[ti]{vti.v      | sE)M.Nr[I].}S$      
+0085 |                           | i)sl.r[i].}fti[ti]{vti.vt      | E)M.Nr[I].}S$       
+0086 | E->i                      | i)sl.r[i].}fti[ti]{vti.vt      | E)M.Nr[I].}S$       
+0086 | SAVESTATE: 0011           |                                |
+0086 |                           | i)sl.r[i].}fti[ti]{vti.vt      | i)M.Nr[I].}S$       
+0087 |                           | )sl.r[i].}fti[ti]{vti.vti      | )M.Nr[I].}S$        
+0088 |                           | sl.r[i].}fti[ti]{vti.vti.      | M.Nr[I].}S$         
+0089 | M->sE                     | sl.r[i].}fti[ti]{vti.vti.      | M.Nr[I].}S$         
+0089 | SAVESTATE: 0012           |                                |
+0089 |                           | sl.r[i].}fti[ti]{vti.vti.      | sE.Nr[I].}S$        
+0090 |                           | l.r[i].}fti[ti]{vti.vti.i      | E.Nr[I].}S$         
+0091 | E->l                      | l.r[i].}fti[ti]{vti.vti.i      | E.Nr[I].}S$         
+0091 | SAVESTATE: 0013           |                                |
+0091 |                           | l.r[i].}fti[ti]{vti.vti.i      | l.Nr[I].}S$         
+0092 |                           | .r[i].}fti[ti]{vti.vti.i=      | .Nr[I].}S$          
+0093 |                           | r[i].}fti[ti]{vti.vti.i=i      | Nr[I].}S$           
+0094 | TNS_NORULECHAIN/NS_NORULE |                                |
+0094 | RESSTATE                  |                                |
+0094 |                           | l.r[i].}fti[ti]{vti.vti.i      | E.Nr[I].}S$         
+0095 | E->lM                     | l.r[i].}fti[ti]{vti.vti.i      | E.Nr[I].}S$         
+0095 | SAVESTATE: 0013           |                                |
+0095 |                           | l.r[i].}fti[ti]{vti.vti.i      | lM.Nr[I].}S$        
+0096 |                           | .r[i].}fti[ti]{vti.vti.i=      | M.Nr[I].}S$         
+0097 | TNS_NORULECHAIN/NS_NORULE |                                |
+0097 | RESSTATE                  |                                |
+0097 |                           | l.r[i].}fti[ti]{vti.vti.i      | E.Nr[I].}S$         
+0098 | TNS_NORULECHAIN/NS_NORULE |                                |
+0098 | RESSTATE                  |                                |
+0098 |                           | sl.r[i].}fti[ti]{vti.vti.      | M.Nr[I].}S$         
+0099 | M->sEM                    | sl.r[i].}fti[ti]{vti.vti.      | M.Nr[I].}S$         
+0099 | SAVESTATE: 0012           |                                |
+0099 |                           | sl.r[i].}fti[ti]{vti.vti.      | sEM.Nr[I].}S$       
+0100 |                           | l.r[i].}fti[ti]{vti.vti.i      | EM.Nr[I].}S$        
+0101 | E->l                      | l.r[i].}fti[ti]{vti.vti.i      | EM.Nr[I].}S$        
+0101 | SAVESTATE: 0013           |                                |
+0101 |                           | l.r[i].}fti[ti]{vti.vti.i      | lM.Nr[I].}S$        
+0102 |                           | .r[i].}fti[ti]{vti.vti.i=      | M.Nr[I].}S$         
+0103 | TNS_NORULECHAIN/NS_NORULE |                                |
+0103 | RESSTATE                  |                                |
+0103 |                           | l.r[i].}fti[ti]{vti.vti.i      | EM.Nr[I].}S$        
+0104 | E->lM                     | l.r[i].}fti[ti]{vti.vti.i      | EM.Nr[I].}S$        
+0104 | SAVESTATE: 0013           |                                |
+0104 |                           | l.r[i].}fti[ti]{vti.vti.i      | lMM.Nr[I].}S$       
+0105 |                           | .r[i].}fti[ti]{vti.vti.i=      | MM.Nr[I].}S$        
+0106 | TNS_NORULECHAIN/NS_NORULE |                                |
+0106 | RESSTATE                  |                                |
+0106 |                           | l.r[i].}fti[ti]{vti.vti.i      | EM.Nr[I].}S$        
+0107 | TNS_NORULECHAIN/NS_NORULE |                                |
+0107 | RESSTATE                  |                                |
+0107 |                           | sl.r[i].}fti[ti]{vti.vti.      | M.Nr[I].}S$         
+0108 | TNS_NORULECHAIN/NS_NORULE |                                |
+0108 | RESSTATE                  |                                |
+0108 |                           | i)sl.r[i].}fti[ti]{vti.vt      | E)M.Nr[I].}S$       
+0109 | E->iK                     | i)sl.r[i].}fti[ti]{vti.vt      | E)M.Nr[I].}S$       
+0109 | SAVESTATE: 0011           |                                |
+0109 |                           | i)sl.r[i].}fti[ti]{vti.vt      | iK)M.Nr[I].}S$      
+0110 |                           | )sl.r[i].}fti[ti]{vti.vti      | K)M.Nr[I].}S$       
+0111 | TNS_NORULECHAIN/NS_NORULE |                                |
+0111 | RESSTATE                  |                                |
+0111 |                           | i)sl.r[i].}fti[ti]{vti.vt      | E)M.Nr[I].}S$       
+0112 | E->iM                     | i)sl.r[i].}fti[ti]{vti.vt      | E)M.Nr[I].}S$       
+0112 | SAVESTATE: 0011           |                                |
+0112 |                           | i)sl.r[i].}fti[ti]{vti.vt      | iM)M.Nr[I].}S$      
+0113 |                           | )sl.r[i].}fti[ti]{vti.vti      | M)M.Nr[I].}S$       
+0114 | TNS_NORULECHAIN/NS_NORULE |                                |
+0114 | RESSTATE                  |                                |
+0114 |                           | i)sl.r[i].}fti[ti]{vti.vt      | E)M.Nr[I].}S$       
+0115 | E->iKM                    | i)sl.r[i].}fti[ti]{vti.vt      | E)M.Nr[I].}S$       
+0115 | SAVESTATE: 0011           |                                |
+0115 |                           | i)sl.r[i].}fti[ti]{vti.vt      | iKM)M.Nr[I].}S$     
+0116 |                           | )sl.r[i].}fti[ti]{vti.vti      | KM)M.Nr[I].}S$      
+0117 | TNS_NORULECHAIN/NS_NORULE |                                |
+0117 | RESSTATE                  |                                |
+0117 |                           | i)sl.r[i].}fti[ti]{vti.vt      | E)M.Nr[I].}S$       
+0118 | TNS_NORULECHAIN/NS_NORULE |                                |
+0118 | RESSTATE                  |                                |
+0118 |                           | si)sl.r[i].}fti[ti]{vti.v      | M)M.Nr[I].}S$       
+0119 | M->sEM                    | si)sl.r[i].}fti[ti]{vti.v      | M)M.Nr[I].}S$       
+0119 | SAVESTATE: 0010           |                                |
+0119 |                           | si)sl.r[i].}fti[ti]{vti.v      | sEM)M.Nr[I].}S$     
+0120 |                           | i)sl.r[i].}fti[ti]{vti.vt      | EM)M.Nr[I].}S$      
+0121 | E->i                      | i)sl.r[i].}fti[ti]{vti.vt      | EM)M.Nr[I].}S$      
+0121 | SAVESTATE: 0011           |                                |
+0121 |                           | i)sl.r[i].}fti[ti]{vti.vt      | iM)M.Nr[I].}S$      
+0122 |                           | )sl.r[i].}fti[ti]{vti.vti      | M)M.Nr[I].}S$       
+0123 | TNS_NORULECHAIN/NS_NORULE |                                |
+0123 | RESSTATE                  |                                |
+0123 |                           | i)sl.r[i].}fti[ti]{vti.vt      | EM)M.Nr[I].}S$      
+0124 | E->iK                     | i)sl.r[i].}fti[ti]{vti.vt      | EM)M.Nr[I].}S$      
+0124 | SAVESTATE: 0011           |                                |
+0124 |                           | i)sl.r[i].}fti[ti]{vti.vt      | iKM)M.Nr[I].}S$     
+0125 |                           | )sl.r[i].}fti[ti]{vti.vti      | KM)M.Nr[I].}S$      
+0126 | TNS_NORULECHAIN/NS_NORULE |                                |
+0126 | RESSTATE                  |                                |
+0126 |                           | i)sl.r[i].}fti[ti]{vti.vt      | EM)M.Nr[I].}S$      
+0127 | E->iM                     | i)sl.r[i].}fti[ti]{vti.vt      | EM)M.Nr[I].}S$      
+0127 | SAVESTATE: 0011           |                                |
+0127 |                           | i)sl.r[i].}fti[ti]{vti.vt      | iMM)M.Nr[I].}S$     
+0128 |                           | )sl.r[i].}fti[ti]{vti.vti      | MM)M.Nr[I].}S$      
+0129 | TNS_NORULECHAIN/NS_NORULE |                                |
+0129 | RESSTATE                  |                                |
+0129 |                           | i)sl.r[i].}fti[ti]{vti.vt      | EM)M.Nr[I].}S$      
+0130 | E->iKM                    | i)sl.r[i].}fti[ti]{vti.vt      | EM)M.Nr[I].}S$      
+0130 | SAVESTATE: 0011           |                                |
+0130 |                           | i)sl.r[i].}fti[ti]{vti.vt      | iKMM)M.Nr[I].}S$    
+0131 |                           | )sl.r[i].}fti[ti]{vti.vti      | KMM)M.Nr[I].}S$     
+0132 | TNS_NORULECHAIN/NS_NORULE |                                |
+0132 | RESSTATE                  |                                |
+0132 |                           | i)sl.r[i].}fti[ti]{vti.vt      | EM)M.Nr[I].}S$      
+0133 | TNS_NORULECHAIN/NS_NORULE |                                |
+0133 | RESSTATE                  |                                |
+0133 |                           | si)sl.r[i].}fti[ti]{vti.v      | M)M.Nr[I].}S$       
+0134 | TNS_NORULECHAIN/NS_NORULE |                                |
+0134 | RESSTATE                  |                                |
+0134 |                           | isi)sl.r[i].}fti[ti]{vti.      | E)M.Nr[I].}S$       
+0135 | E->iKM                    | isi)sl.r[i].}fti[ti]{vti.      | E)M.Nr[I].}S$       
+0135 | SAVESTATE: 0009           |                                |
+0135 |                           | isi)sl.r[i].}fti[ti]{vti.      | iKM)M.Nr[I].}S$     
+0136 |                           | si)sl.r[i].}fti[ti]{vti.v      | KM)M.Nr[I].}S$      
+0137 | TNS_NORULECHAIN/NS_NORULE |                                |
+0137 | RESSTATE                  |                                |
+0137 |                           | isi)sl.r[i].}fti[ti]{vti.      | E)M.Nr[I].}S$       
+0138 | TNS_NORULECHAIN/NS_NORULE |                                |
+0138 | RESSTATE                  |                                |
+0138 |                           | (isi)sl.r[i].}fti[ti]{vti      | E.Nr[I].}S$         
+0139 | TNS_NORULECHAIN/NS_NORULE |                                |
+0139 | RESSTATE                  |                                |
+0139 |                           | i=(isi)sl.r[i].}fti[ti]{v      | Nr[I].}S$           
+0140 | N->iK.N                   | i=(isi)sl.r[i].}fti[ti]{v      | Nr[I].}S$           
+0140 | SAVESTATE: 0007           |                                |
+0140 |                           | i=(isi)sl.r[i].}fti[ti]{v      | iK.Nr[I].}S$        
+0141 |                           | =(isi)sl.r[i].}fti[ti]{vt      | K.Nr[I].}S$         
+0142 | TNS_NORULECHAIN/NS_NORULE |                                |
+0142 | RESSTATE                  |                                |
+0142 |                           | i=(isi)sl.r[i].}fti[ti]{v      | Nr[I].}S$           
+0143 | N->i=E.                   | i=(isi)sl.r[i].}fti[ti]{v      | Nr[I].}S$           
+0143 | SAVESTATE: 0007           |                                |
+0143 |                           | i=(isi)sl.r[i].}fti[ti]{v      | i=E.r[I].}S$        
+0144 |                           | =(isi)sl.r[i].}fti[ti]{vt      | =E.r[I].}S$         
+0145 |                           | (isi)sl.r[i].}fti[ti]{vti      | E.r[I].}S$          
+0146 | E->(E)                    | (isi)sl.r[i].}fti[ti]{vti      | E.r[I].}S$          
+0146 | SAVESTATE: 0008           |                                |
+0146 |                           | (isi)sl.r[i].}fti[ti]{vti      | (E).r[I].}S$        
+0147 |                           | isi)sl.r[i].}fti[ti]{vti.      | E).r[I].}S$         
+0148 | E->i                      | isi)sl.r[i].}fti[ti]{vti.      | E).r[I].}S$         
+0148 | SAVESTATE: 0009           |                                |
+0148 |                           | isi)sl.r[i].}fti[ti]{vti.      | i).r[I].}S$         
+0149 |                           | si)sl.r[i].}fti[ti]{vti.v      | ).r[I].}S$          
+0150 | TS_NOK/NS_NORULECHAIN     |                                |
+0150 | RESSTATE                  |                                |
+0150 |                           | isi)sl.r[i].}fti[ti]{vti.      | E).r[I].}S$         
+0151 | E->iK                     | isi)sl.r[i].}fti[ti]{vti.      | E).r[I].}S$         
+0151 | SAVESTATE: 0009           |                                |
+0151 |                           | isi)sl.r[i].}fti[ti]{vti.      | iK).r[I].}S$        
+0152 |                           | si)sl.r[i].}fti[ti]{vti.v      | K).r[I].}S$         
+0153 | TNS_NORULECHAIN/NS_NORULE |                                |
+0153 | RESSTATE                  |                                |
+0153 |                           | isi)sl.r[i].}fti[ti]{vti.      | E).r[I].}S$         
+0154 | E->iM                     | isi)sl.r[i].}fti[ti]{vti.      | E).r[I].}S$         
+0154 | SAVESTATE: 0009           |                                |
+0154 |                           | isi)sl.r[i].}fti[ti]{vti.      | iM).r[I].}S$        
+0155 |                           | si)sl.r[i].}fti[ti]{vti.v      | M).r[I].}S$         
+0156 | M->sE                     | si)sl.r[i].}fti[ti]{vti.v      | M).r[I].}S$         
+0156 | SAVESTATE: 0010           |                                |
+0156 |                           | si)sl.r[i].}fti[ti]{vti.v      | sE).r[I].}S$        
+0157 |                           | i)sl.r[i].}fti[ti]{vti.vt      | E).r[I].}S$         
+0158 | E->i                      | i)sl.r[i].}fti[ti]{vti.vt      | E).r[I].}S$         
+0158 | SAVESTATE: 0011           |                                |
+0158 |                           | i)sl.r[i].}fti[ti]{vti.vt      | i).r[I].}S$         
+0159 |                           | )sl.r[i].}fti[ti]{vti.vti      | ).r[I].}S$          
+0160 |                           | sl.r[i].}fti[ti]{vti.vti.      | .r[I].}S$           
+0161 | TS_NOK/NS_NORULECHAIN     |                                |
+0161 | RESSTATE                  |                                |
+0161 |                           | i)sl.r[i].}fti[ti]{vti.vt      | E).r[I].}S$         
+0162 | E->iK                     | i)sl.r[i].}fti[ti]{vti.vt      | E).r[I].}S$         
+0162 | SAVESTATE: 0011           |                                |
+0162 |                           | i)sl.r[i].}fti[ti]{vti.vt      | iK).r[I].}S$        
+0163 |                           | )sl.r[i].}fti[ti]{vti.vti      | K).r[I].}S$         
+0164 | TNS_NORULECHAIN/NS_NORULE |                                |
+0164 | RESSTATE                  |                                |
+0164 |                           | i)sl.r[i].}fti[ti]{vti.vt      | E).r[I].}S$         
+0165 | E->iM                     | i)sl.r[i].}fti[ti]{vti.vt      | E).r[I].}S$         
+0165 | SAVESTATE: 0011           |                                |
+0165 |                           | i)sl.r[i].}fti[ti]{vti.vt      | iM).r[I].}S$        
+0166 |                           | )sl.r[i].}fti[ti]{vti.vti      | M).r[I].}S$         
+0167 | TNS_NORULECHAIN/NS_NORULE |                                |
+0167 | RESSTATE                  |                                |
+0167 |                           | i)sl.r[i].}fti[ti]{vti.vt      | E).r[I].}S$         
+0168 | E->iKM                    | i)sl.r[i].}fti[ti]{vti.vt      | E).r[I].}S$         
+0168 | SAVESTATE: 0011           |                                |
+0168 |                           | i)sl.r[i].}fti[ti]{vti.vt      | iKM).r[I].}S$       
+0169 |                           | )sl.r[i].}fti[ti]{vti.vti      | KM).r[I].}S$        
+0170 | TNS_NORULECHAIN/NS_NORULE |                                |
+0170 | RESSTATE                  |                                |
+0170 |                           | i)sl.r[i].}fti[ti]{vti.vt      | E).r[I].}S$         
+0171 | TNS_NORULECHAIN/NS_NORULE |                                |
+0171 | RESSTATE                  |                                |
+0171 |                           | si)sl.r[i].}fti[ti]{vti.v      | M).r[I].}S$         
+0172 | M->sEM                    | si)sl.r[i].}fti[ti]{vti.v      | M).r[I].}S$         
+0172 | SAVESTATE: 0010           |                                |
+0172 |                           | si)sl.r[i].}fti[ti]{vti.v      | sEM).r[I].}S$       
+0173 |                           | i)sl.r[i].}fti[ti]{vti.vt      | EM).r[I].}S$        
+0174 | E->i                      | i)sl.r[i].}fti[ti]{vti.vt      | EM).r[I].}S$        
+0174 | SAVESTATE: 0011           |                                |
+0174 |                           | i)sl.r[i].}fti[ti]{vti.vt      | iM).r[I].}S$        
+0175 |                           | )sl.r[i].}fti[ti]{vti.vti      | M).r[I].}S$         
+0176 | TNS_NORULECHAIN/NS_NORULE |                                |
+0176 | RESSTATE                  |                                |
+0176 |                           | i)sl.r[i].}fti[ti]{vti.vt      | EM).r[I].}S$        
+0177 | E->iK                     | i)sl.r[i].}fti[ti]{vti.vt      | EM).r[I].}S$        
+0177 | SAVESTATE: 0011           |                                |
+0177 |                           | i)sl.r[i].}fti[ti]{vti.vt      | iKM).r[I].}S$       
+0178 |                           | )sl.r[i].}fti[ti]{vti.vti      | KM).r[I].}S$        
+0179 | TNS_NORULECHAIN/NS_NORULE |                                |
+0179 | RESSTATE                  |                                |
+0179 |                           | i)sl.r[i].}fti[ti]{vti.vt      | EM).r[I].}S$        
+0180 | E->iM                     | i)sl.r[i].}fti[ti]{vti.vt      | EM).r[I].}S$        
+0180 | SAVESTATE: 0011           |                                |
+0180 |                           | i)sl.r[i].}fti[ti]{vti.vt      | iMM).r[I].}S$       
+0181 |                           | )sl.r[i].}fti[ti]{vti.vti      | MM).r[I].}S$        
+0182 | TNS_NORULECHAIN/NS_NORULE |                                |
+0182 | RESSTATE                  |                                |
+0182 |                           | i)sl.r[i].}fti[ti]{vti.vt      | EM).r[I].}S$        
+0183 | E->iKM                    | i)sl.r[i].}fti[ti]{vti.vt      | EM).r[I].}S$        
+0183 | SAVESTATE: 0011           |                                |
+0183 |                           | i)sl.r[i].}fti[ti]{vti.vt      | iKMM).r[I].}S$      
+0184 |                           | )sl.r[i].}fti[ti]{vti.vti      | KMM).r[I].}S$       
+0185 | TNS_NORULECHAIN/NS_NORULE |                                |
+0185 | RESSTATE                  |                                |
+0185 |                           | i)sl.r[i].}fti[ti]{vti.vt      | EM).r[I].}S$        
+0186 | TNS_NORULECHAIN/NS_NORULE |                                |
+0186 | RESSTATE                  |                                |
+0186 |                           | si)sl.r[i].}fti[ti]{vti.v      | M).r[I].}S$         
+0187 | TNS_NORULECHAIN/NS_NORULE |                                |
+0187 | RESSTATE                  |                                |
+0187 |                           | isi)sl.r[i].}fti[ti]{vti.      | E).r[I].}S$         
+0188 | E->iKM                    | isi)sl.r[i].}fti[ti]{vti.      | E).r[I].}S$         
+0188 | SAVESTATE: 0009           |                                |
+0188 |                           | isi)sl.r[i].}fti[ti]{vti.      | iKM).r[I].}S$       
+0189 |                           | si)sl.r[i].}fti[ti]{vti.v      | KM).r[I].}S$        
+0190 | TNS_NORULECHAIN/NS_NORULE |                                |
+0190 | RESSTATE                  |                                |
+0190 |                           | isi)sl.r[i].}fti[ti]{vti.      | E).r[I].}S$         
+0191 | TNS_NORULECHAIN/NS_NORULE |                                |
+0191 | RESSTATE                  |                                |
+0191 |                           | (isi)sl.r[i].}fti[ti]{vti      | E.r[I].}S$          
+0192 | E->(E)M                   | (isi)sl.r[i].}fti[ti]{vti      | E.r[I].}S$          
+0192 | SAVESTATE: 0008           |                                |
+0192 |                           | (isi)sl.r[i].}fti[ti]{vti      | (E)M.r[I].}S$       
+0193 |                           | isi)sl.r[i].}fti[ti]{vti.      | E)M.r[I].}S$        
+0194 | E->i                      | isi)sl.r[i].}fti[ti]{vti.      | E)M.r[I].}S$        
+0194 | SAVESTATE: 0009           |                                |
+0194 |                           | isi)sl.r[i].}fti[ti]{vti.      | i)M.r[I].}S$        
+0195 |                           | si)sl.r[i].}fti[ti]{vti.v      | )M.r[I].}S$         
+0196 | TS_NOK/NS_NORULECHAIN     |                                |
+0196 | RESSTATE                  |                                |
+0196 |                           | isi)sl.r[i].}fti[ti]{vti.      | E)M.r[I].}S$        
+0197 | E->iK                     | isi)sl.r[i].}fti[ti]{vti.      | E)M.r[I].}S$        
+0197 | SAVESTATE: 0009           |                                |
+0197 |                           | isi)sl.r[i].}fti[ti]{vti.      | iK)M.r[I].}S$       
+0198 |                           | si)sl.r[i].}fti[ti]{vti.v      | K)M.r[I].}S$        
+0199 | TNS_NORULECHAIN/NS_NORULE |                                |
+0199 | RESSTATE                  |                                |
+0199 |                           | isi)sl.r[i].}fti[ti]{vti.      | E)M.r[I].}S$        
+0200 | E->iM                     | isi)sl.r[i].}fti[ti]{vti.      | E)M.r[I].}S$        
+0200 | SAVESTATE: 0009           |                                |
+0200 |                           | isi)sl.r[i].}fti[ti]{vti.      | iM)M.r[I].}S$       
+0201 |                           | si)sl.r[i].}fti[ti]{vti.v      | M)M.r[I].}S$        
+0202 | M->sE                     | si)sl.r[i].}fti[ti]{vti.v      | M)M.r[I].}S$        
+0202 | SAVESTATE: 0010           |                                |
+0202 |                           | si)sl.r[i].}fti[ti]{vti.v      | sE)M.r[I].}S$       
+0203 |                           | i)sl.r[i].}fti[ti]{vti.vt      | E)M.r[I].}S$        
+0204 | E->i                      | i)sl.r[i].}fti[ti]{vti.vt      | E)M.r[I].}S$        
+0204 | SAVESTATE: 0011           |                                |
+0204 |                           | i)sl.r[i].}fti[ti]{vti.vt      | i)M.r[I].}S$        
+0205 |                           | )sl.r[i].}fti[ti]{vti.vti      | )M.r[I].}S$         
+0206 |                           | sl.r[i].}fti[ti]{vti.vti.      | M.r[I].}S$          
+0207 | M->sE                     | sl.r[i].}fti[ti]{vti.vti.      | M.r[I].}S$          
+0207 | SAVESTATE: 0012           |                                |
+0207 |                           | sl.r[i].}fti[ti]{vti.vti.      | sE.r[I].}S$         
+0208 |                           | l.r[i].}fti[ti]{vti.vti.i      | E.r[I].}S$          
+0209 | E->l                      | l.r[i].}fti[ti]{vti.vti.i      | E.r[I].}S$          
+0209 | SAVESTATE: 0013           |                                |
+0209 |                           | l.r[i].}fti[ti]{vti.vti.i      | l.r[I].}S$          
+0210 |                           | .r[i].}fti[ti]{vti.vti.i=      | .r[I].}S$           
+0211 |                           | r[i].}fti[ti]{vti.vti.i=i      | r[I].}S$            
+0212 |                           | [i].}fti[ti]{vti.vti.i=is      | [I].}S$             
+0213 |                           | i].}fti[ti]{vti.vti.i=isl      | I].}S$              
+0214 | I->i                      | i].}fti[ti]{vti.vti.i=isl      | I].}S$              
+0214 | SAVESTATE: 0014           |                                |
+0214 |                           | i].}fti[ti]{vti.vti.i=isl      | i].}S$              
+0215 |                           | ].}fti[ti]{vti.vti.i=isl.      | ].}S$               
+0216 |                           | .}fti[ti]{vti.vti.i=isl.c      | .}S$                
+0217 |                           | }fti[ti]{vti.vti.i=isl.c[      | }S$                 
+0218 |                           | fti[ti]{vti.vti.i=isl.c[i      | S$                  
+0219 | S->ftiFBS                 | fti[ti]{vti.vti.i=isl.c[i      | S$                  
+0219 | SAVESTATE: 0015           |                                |
+0219 |                           | fti[ti]{vti.vti.i=isl.c[i      | ftiFBS$             
+0220 |                           | ti[ti]{vti.vti.i=isl.c[ib      | tiFBS$              
+0221 |                           | i[ti]{vti.vti.i=isl.c[ibl      | iFBS$               
+0222 |                           | [ti]{vti.vti.i=isl.c[ibl]      | FBS$                
+0223 | F->[P]                    | [ti]{vti.vti.i=isl.c[ibl]      | FBS$                
+0223 | SAVESTATE: 0016           |                                |
+0223 |                           | [ti]{vti.vti.i=isl.c[ibl]      | [P]BS$              
+0224 |                           | ti]{vti.vti.i=isl.c[ibl]{      | P]BS$               
+0225 | P->ti                     | ti]{vti.vti.i=isl.c[ibl]{      | P]BS$               
+0225 | SAVESTATE: 0017           |                                |
+0225 |                           | ti]{vti.vti.i=isl.c[ibl]{      | ti]BS$              
+0226 |                           | i]{vti.vti.i=isl.c[ibl]{i      | i]BS$               
+0227 |                           | ]{vti.vti.i=isl.c[ibl]{i=      | ]BS$                
+0228 |                           | {vti.vti.i=isl.c[ibl]{i=l      | BS$                 
+0229 | B->{Nr[I].}               | {vti.vti.i=isl.c[ibl]{i=l      | BS$                 
+0229 | SAVESTATE: 0018           |                                |
+0229 |                           | {vti.vti.i=isl.c[ibl]{i=l      | {Nr[I].}S$          
+0230 |                           | vti.vti.i=isl.c[ibl]{i=l.      | Nr[I].}S$           
+0231 | N->vti.N                  | vti.vti.i=isl.c[ibl]{i=l.      | Nr[I].}S$           
+0231 | SAVESTATE: 0019           |                                |
+0231 |                           | vti.vti.i=isl.c[ibl]{i=l.      | vti.Nr[I].}S$       
+0232 |                           | ti.vti.i=isl.c[ibl]{i=l.}      | ti.Nr[I].}S$        
+0233 |                           | i.vti.i=isl.c[ibl]{i=l.}u      | i.Nr[I].}S$         
+0234 |                           | .vti.i=isl.c[ibl]{i=l.}u{      | .Nr[I].}S$          
+0235 |                           | vti.i=isl.c[ibl]{i=l.}u{i      | Nr[I].}S$           
+0236 | N->vti.N                  | vti.i=isl.c[ibl]{i=l.}u{i      | Nr[I].}S$           
+0236 | SAVESTATE: 0020           |                                |
+0236 |                           | vti.i=isl.c[ibl]{i=l.}u{i      | vti.Nr[I].}S$       
+0237 |                           | ti.i=isl.c[ibl]{i=l.}u{i=      | ti.Nr[I].}S$        
+0238 |                           | i.i=isl.c[ibl]{i=l.}u{i=l      | i.Nr[I].}S$         
+0239 |                           | .i=isl.c[ibl]{i=l.}u{i=l.      | .Nr[I].}S$          
+0240 |                           | i=isl.c[ibl]{i=l.}u{i=l.}      | Nr[I].}S$           
+0241 | N->i=E.N                  | i=isl.c[ibl]{i=l.}u{i=l.}      | Nr[I].}S$           
+0241 | SAVESTATE: 0021           |                                |
+0241 |                           | i=isl.c[ibl]{i=l.}u{i=l.}      | i=E.Nr[I].}S$       
+0242 |                           | =isl.c[ibl]{i=l.}u{i=l.}r      | =E.Nr[I].}S$        
+0243 |                           | isl.c[ibl]{i=l.}u{i=l.}r[      | E.Nr[I].}S$         
+0244 | E->i                      | isl.c[ibl]{i=l.}u{i=l.}r[      | E.Nr[I].}S$         
+0244 | SAVESTATE: 0022           |                                |
+0244 |                           | isl.c[ibl]{i=l.}u{i=l.}r[      | i.Nr[I].}S$         
+0245 |                           | sl.c[ibl]{i=l.}u{i=l.}r[i      | .Nr[I].}S$          
+0246 | TS_NOK/NS_NORULECHAIN     |                                |
+0246 | RESSTATE                  |                                |
+0246 |                           | isl.c[ibl]{i=l.}u{i=l.}r[      | E.Nr[I].}S$         
+0247 | E->iK                     | isl.c[ibl]{i=l.}u{i=l.}r[      | E.Nr[I].}S$         
+0247 | SAVESTATE: 0022           |                                |
+0247 |                           | isl.c[ibl]{i=l.}u{i=l.}r[      | iK.Nr[I].}S$        
+0248 |                           | sl.c[ibl]{i=l.}u{i=l.}r[i      | K.Nr[I].}S$         
+0249 | TNS_NORULECHAIN/NS_NORULE |                                |
+0249 | RESSTATE                  |                                |
+0249 |                           | isl.c[ibl]{i=l.}u{i=l.}r[      | E.Nr[I].}S$         
+0250 | E->iM                     | isl.c[ibl]{i=l.}u{i=l.}r[      | E.Nr[I].}S$         
+0250 | SAVESTATE: 0022           |                                |
+0250 |                           | isl.c[ibl]{i=l.}u{i=l.}r[      | iM.Nr[I].}S$        
+0251 |                           | sl.c[ibl]{i=l.}u{i=l.}r[i      | M.Nr[I].}S$         
+0252 | M->sE                     | sl.c[ibl]{i=l.}u{i=l.}r[i      | M.Nr[I].}S$         
+0252 | SAVESTATE: 0023           |                                |
+0252 |                           | sl.c[ibl]{i=l.}u{i=l.}r[i      | sE.Nr[I].}S$        
+0253 |                           | l.c[ibl]{i=l.}u{i=l.}r[i]      | E.Nr[I].}S$         
+0254 | E->l                      | l.c[ibl]{i=l.}u{i=l.}r[i]      | E.Nr[I].}S$         
+0254 | SAVESTATE: 0024           |                                |
+0254 |                           | l.c[ibl]{i=l.}u{i=l.}r[i]      | l.Nr[I].}S$         
+0255 |                           | .c[ibl]{i=l.}u{i=l.}r[i].      | .Nr[I].}S$          
+0256 |                           | c[ibl]{i=l.}u{i=l.}r[i].}      | Nr[I].}S$           
+0257 | N->c[R]{X}N               | c[ibl]{i=l.}u{i=l.}r[i].}      | Nr[I].}S$           
+0257 | SAVESTATE: 0025           |                                |
+0257 |                           | c[ibl]{i=l.}u{i=l.}r[i].}      | c[R]{X}Nr[I].}S$    
+0258 |                           | [ibl]{i=l.}u{i=l.}r[i].}g      | [R]{X}Nr[I].}S$     
+0259 |                           | ibl]{i=l.}u{i=l.}r[i].}g{      | R]{X}Nr[I].}S$      
+0260 | R->i                      | ibl]{i=l.}u{i=l.}r[i].}g{      | R]{X}Nr[I].}S$      
+0260 | SAVESTATE: 0026           |                                |
+0260 |                           | ibl]{i=l.}u{i=l.}r[i].}g{      | i]{X}Nr[I].}S$      
+0261 |                           | bl]{i=l.}u{i=l.}r[i].}g{v      | ]{X}Nr[I].}S$       
+0262 | TS_NOK/NS_NORULECHAIN     |                                |
+0262 | RESSTATE                  |                                |
+0262 |                           | ibl]{i=l.}u{i=l.}r[i].}g{      | R]{X}Nr[I].}S$      
+0263 | R->ibi                    | ibl]{i=l.}u{i=l.}r[i].}g{      | R]{X}Nr[I].}S$      
+0263 | SAVESTATE: 0026           |                                |
+0263 |                           | ibl]{i=l.}u{i=l.}r[i].}g{      | ibi]{X}Nr[I].}S$    
+0264 |                           | bl]{i=l.}u{i=l.}r[i].}g{v      | bi]{X}Nr[I].}S$     
+0265 |                           | l]{i=l.}u{i=l.}r[i].}g{vt      | i]{X}Nr[I].}S$      
+0266 | TS_NOK/NS_NORULECHAIN     |                                |
+0266 | RESSTATE                  |                                |
+0266 |                           | ibl]{i=l.}u{i=l.}r[i].}g{      | R]{X}Nr[I].}S$      
+0267 | R->ibl                    | ibl]{i=l.}u{i=l.}r[i].}g{      | R]{X}Nr[I].}S$      
+0267 | SAVESTATE: 0026           |                                |
+0267 |                           | ibl]{i=l.}u{i=l.}r[i].}g{      | ibl]{X}Nr[I].}S$    
+0268 |                           | bl]{i=l.}u{i=l.}r[i].}g{v      | bl]{X}Nr[I].}S$     
+0269 |                           | l]{i=l.}u{i=l.}r[i].}g{vt      | l]{X}Nr[I].}S$      
+0270 |                           | ]{i=l.}u{i=l.}r[i].}g{vti      | ]{X}Nr[I].}S$       
+0271 |                           | {i=l.}u{i=l.}r[i].}g{vti=      | {X}Nr[I].}S$        
+0272 |                           | i=l.}u{i=l.}r[i].}g{vti=i      | X}Nr[I].}S$         
+0273 | X->i=E.N                  | i=l.}u{i=l.}r[i].}g{vti=i      | X}Nr[I].}S$         
+0273 | SAVESTATE: 0027           |                                |
+0273 |                           | i=l.}u{i=l.}r[i].}g{vti=i      | i=E.N}Nr[I].}S$     
+0274 |                           | =l.}u{i=l.}r[i].}g{vti=i[      | =E.N}Nr[I].}S$      
+0275 |                           | l.}u{i=l.}r[i].}g{vti=i[l      | E.N}Nr[I].}S$       
+0276 | E->l                      | l.}u{i=l.}r[i].}g{vti=i[l      | E.N}Nr[I].}S$       
+0276 | SAVESTATE: 0028           |                                |
+0276 |                           | l.}u{i=l.}r[i].}g{vti=i[l      | l.N}Nr[I].}S$       
+0277 |                           | .}u{i=l.}r[i].}g{vti=i[l&      | .N}Nr[I].}S$        
+0278 |                           | }u{i=l.}r[i].}g{vti=i[l&l      | N}Nr[I].}S$         
+0279 | TNS_NORULECHAIN/NS_NORULE |                                |
+0279 | RESSTATE                  |                                |
+0279 |                           | l.}u{i=l.}r[i].}g{vti=i[l      | E.N}Nr[I].}S$       
+0280 | E->lM                     | l.}u{i=l.}r[i].}g{vti=i[l      | E.N}Nr[I].}S$       
+0280 | SAVESTATE: 0028           |                                |
+0280 |                           | l.}u{i=l.}r[i].}g{vti=i[l      | lM.N}Nr[I].}S$      
+0281 |                           | .}u{i=l.}r[i].}g{vti=i[l&      | M.N}Nr[I].}S$       
+0282 | TNS_NORULECHAIN/NS_NORULE |                                |
+0282 | RESSTATE                  |                                |
+0282 |                           | l.}u{i=l.}r[i].}g{vti=i[l      | E.N}Nr[I].}S$       
+0283 | TNS_NORULECHAIN/NS_NORULE |                                |
+0283 | RESSTATE                  |                                |
+0283 |                           | i=l.}u{i=l.}r[i].}g{vti=i      | X}Nr[I].}S$         
+0284 | X->iK.N                   | i=l.}u{i=l.}r[i].}g{vti=i      | X}Nr[I].}S$         
+0284 | SAVESTATE: 0027           |                                |
+0284 |                           | i=l.}u{i=l.}r[i].}g{vti=i      | iK.N}Nr[I].}S$      
+0285 |                           | =l.}u{i=l.}r[i].}g{vti=i[      | K.N}Nr[I].}S$       
+0286 | TNS_NORULECHAIN/NS_NORULE |                                |
+0286 | RESSTATE                  |                                |
+0286 |                           | i=l.}u{i=l.}r[i].}g{vti=i      | X}Nr[I].}S$         
+0287 | X->i=E.                   | i=l.}u{i=l.}r[i].}g{vti=i      | X}Nr[I].}S$         
+0287 | SAVESTATE: 0027           |                                |
+0287 |                           | i=l.}u{i=l.}r[i].}g{vti=i      | i=E.}Nr[I].}S$      
+0288 |                           | =l.}u{i=l.}r[i].}g{vti=i[      | =E.}Nr[I].}S$       
+0289 |                           | l.}u{i=l.}r[i].}g{vti=i[l      | E.}Nr[I].}S$        
+0290 | E->l                      | l.}u{i=l.}r[i].}g{vti=i[l      | E.}Nr[I].}S$        
+0290 | SAVESTATE: 0028           |                                |
+0290 |                           | l.}u{i=l.}r[i].}g{vti=i[l      | l.}Nr[I].}S$        
+0291 |                           | .}u{i=l.}r[i].}g{vti=i[l&      | .}Nr[I].}S$         
+0292 |                           | }u{i=l.}r[i].}g{vti=i[l&l      | }Nr[I].}S$          
+0293 |                           | u{i=l.}r[i].}g{vti=i[l&l]      | Nr[I].}S$           
+0294 | TNS_NORULECHAIN/NS_NORULE |                                |
+0294 | RESSTATE                  |                                |
+0294 |                           | l.}u{i=l.}r[i].}g{vti=i[l      | E.}Nr[I].}S$        
+0295 | E->lM                     | l.}u{i=l.}r[i].}g{vti=i[l      | E.}Nr[I].}S$        
+0295 | SAVESTATE: 0028           |                                |
+0295 |                           | l.}u{i=l.}r[i].}g{vti=i[l      | lM.}Nr[I].}S$       
+0296 |                           | .}u{i=l.}r[i].}g{vti=i[l&      | M.}Nr[I].}S$        
+0297 | TNS_NORULECHAIN/NS_NORULE |                                |
+0297 | RESSTATE                  |                                |
+0297 |                           | l.}u{i=l.}r[i].}g{vti=i[l      | E.}Nr[I].}S$        
+0298 | TNS_NORULECHAIN/NS_NORULE |                                |
+0298 | RESSTATE                  |                                |
+0298 |                           | i=l.}u{i=l.}r[i].}g{vti=i      | X}Nr[I].}S$         
+0299 | X->iK.                    | i=l.}u{i=l.}r[i].}g{vti=i      | X}Nr[I].}S$         
+0299 | SAVESTATE: 0027           |                                |
+0299 |                           | i=l.}u{i=l.}r[i].}g{vti=i      | iK.}Nr[I].}S$       
+0300 |                           | =l.}u{i=l.}r[i].}g{vti=i[      | K.}Nr[I].}S$        
+0301 | TNS_NORULECHAIN/NS_NORULE |                                |
+0301 | RESSTATE                  |                                |
+0301 |                           | i=l.}u{i=l.}r[i].}g{vti=i      | X}Nr[I].}S$         
+0302 | TNS_NORULECHAIN/NS_NORULE |                                |
+0302 | RESSTATE                  |                                |
+0302 |                           | ibl]{i=l.}u{i=l.}r[i].}g{      | R]{X}Nr[I].}S$      
+0303 | TNS_NORULECHAIN/NS_NORULE |                                |
+0303 | RESSTATE                  |                                |
+0303 |                           | c[ibl]{i=l.}u{i=l.}r[i].}      | Nr[I].}S$           
+0304 | N->c[R]{X}u{X}N           | c[ibl]{i=l.}u{i=l.}r[i].}      | Nr[I].}S$           
+0304 | SAVESTATE: 0025           |                                |
+0304 |                           | c[ibl]{i=l.}u{i=l.}r[i].}      | c[R]{X}u{X}Nr[I].}S$
+0305 |                           | [ibl]{i=l.}u{i=l.}r[i].}g      | [R]{X}u{X}Nr[I].}S$ 
+0306 |                           | ibl]{i=l.}u{i=l.}r[i].}g{      | R]{X}u{X}Nr[I].}S$  
+0307 | R->i                      | ibl]{i=l.}u{i=l.}r[i].}g{      | R]{X}u{X}Nr[I].}S$  
+0307 | SAVESTATE: 0026           |                                |
+0307 |                           | ibl]{i=l.}u{i=l.}r[i].}g{      | i]{X}u{X}Nr[I].}S$  
+0308 |                           | bl]{i=l.}u{i=l.}r[i].}g{v      | ]{X}u{X}Nr[I].}S$   
+0309 | TS_NOK/NS_NORULECHAIN     |                                |
+0309 | RESSTATE                  |                                |
+0309 |                           | ibl]{i=l.}u{i=l.}r[i].}g{      | R]{X}u{X}Nr[I].}S$  
+0310 | R->ibi                    | ibl]{i=l.}u{i=l.}r[i].}g{      | R]{X}u{X}Nr[I].}S$  
+0310 | SAVESTATE: 0026           |                                |
+0310 |                           | ibl]{i=l.}u{i=l.}r[i].}g{      | ibi]{X}u{X}Nr[I].}S$
+0311 |                           | bl]{i=l.}u{i=l.}r[i].}g{v      | bi]{X}u{X}Nr[I].}S$ 
+0312 |                           | l]{i=l.}u{i=l.}r[i].}g{vt      | i]{X}u{X}Nr[I].}S$  
+0313 | TS_NOK/NS_NORULECHAIN     |                                |
+0313 | RESSTATE                  |                                |
+0313 |                           | ibl]{i=l.}u{i=l.}r[i].}g{      | R]{X}u{X}Nr[I].}S$  
+0314 | R->ibl                    | ibl]{i=l.}u{i=l.}r[i].}g{      | R]{X}u{X}Nr[I].}S$  
+0314 | SAVESTATE: 0026           |                                |
+0314 |                           | ibl]{i=l.}u{i=l.}r[i].}g{      | ibl]{X}u{X}Nr[I].}S$
+0315 |                           | bl]{i=l.}u{i=l.}r[i].}g{v      | bl]{X}u{X}Nr[I].}S$ 
+0316 |                           | l]{i=l.}u{i=l.}r[i].}g{vt      | l]{X}u{X}Nr[I].}S$  
+0317 |                           | ]{i=l.}u{i=l.}r[i].}g{vti      | ]{X}u{X}Nr[I].}S$   
+0318 |                           | {i=l.}u{i=l.}r[i].}g{vti=      | {X}u{X}Nr[I].}S$    
+0319 |                           | i=l.}u{i=l.}r[i].}g{vti=i      | X}u{X}Nr[I].}S$     
+0320 | X->i=E.N                  | i=l.}u{i=l.}r[i].}g{vti=i      | X}u{X}Nr[I].}S$     
+0320 | SAVESTATE: 0027           |                                |
+0320 |                           | i=l.}u{i=l.}r[i].}g{vti=i      | i=E.N}u{X}Nr[I].}S$ 
+0321 |                           | =l.}u{i=l.}r[i].}g{vti=i[      | =E.N}u{X}Nr[I].}S$  
+0322 |                           | l.}u{i=l.}r[i].}g{vti=i[l      | E.N}u{X}Nr[I].}S$   
+0323 | E->l                      | l.}u{i=l.}r[i].}g{vti=i[l      | E.N}u{X}Nr[I].}S$   
+0323 | SAVESTATE: 0028           |                                |
+0323 |                           | l.}u{i=l.}r[i].}g{vti=i[l      | l.N}u{X}Nr[I].}S$   
+0324 |                           | .}u{i=l.}r[i].}g{vti=i[l&      | .N}u{X}Nr[I].}S$    
+0325 |                           | }u{i=l.}r[i].}g{vti=i[l&l      | N}u{X}Nr[I].}S$     
+0326 | TNS_NORULECHAIN/NS_NORULE |                                |
+0326 | RESSTATE                  |                                |
+0326 |                           | l.}u{i=l.}r[i].}g{vti=i[l      | E.N}u{X}Nr[I].}S$   
+0327 | E->lM                     | l.}u{i=l.}r[i].}g{vti=i[l      | E.N}u{X}Nr[I].}S$   
+0327 | SAVESTATE: 0028           |                                |
+0327 |                           | l.}u{i=l.}r[i].}g{vti=i[l      | lM.N}u{X}Nr[I].}S$  
+0328 |                           | .}u{i=l.}r[i].}g{vti=i[l&      | M.N}u{X}Nr[I].}S$   
+0329 | TNS_NORULECHAIN/NS_NORULE |                                |
+0329 | RESSTATE                  |                                |
+0329 |                           | l.}u{i=l.}r[i].}g{vti=i[l      | E.N}u{X}Nr[I].}S$   
+0330 | TNS_NORULECHAIN/NS_NORULE |                                |
+0330 | RESSTATE                  |                                |
+0330 |                           | i=l.}u{i=l.}r[i].}g{vti=i      | X}u{X}Nr[I].}S$     
+0331 | X->iK.N                   | i=l.}u{i=l.}r[i].}g{vti=i      | X}u{X}Nr[I].}S$     
+0331 | SAVESTATE: 0027           |                                |
+0331 |                           | i=l.}u{i=l.}r[i].}g{vti=i      | iK.N}u{X}Nr[I].}S$  
+0332 |                           | =l.}u{i=l.}r[i].}g{vti=i[      | K.N}u{X}Nr[I].}S$   
+0333 | TNS_NORULECHAIN/NS_NORULE |                                |
+0333 | RESSTATE                  |                                |
+0333 |                           | i=l.}u{i=l.}r[i].}g{vti=i      | X}u{X}Nr[I].}S$     
+0334 | X->i=E.                   | i=l.}u{i=l.}r[i].}g{vti=i      | X}u{X}Nr[I].}S$     
+0334 | SAVESTATE: 0027           |                                |
+0334 |                           | i=l.}u{i=l.}r[i].}g{vti=i      | i=E.}u{X}Nr[I].}S$  
+0335 |                           | =l.}u{i=l.}r[i].}g{vti=i[      | =E.}u{X}Nr[I].}S$   
+0336 |                           | l.}u{i=l.}r[i].}g{vti=i[l      | E.}u{X}Nr[I].}S$    
+0337 | E->l                      | l.}u{i=l.}r[i].}g{vti=i[l      | E.}u{X}Nr[I].}S$    
+0337 | SAVESTATE: 0028           |                                |
+0337 |                           | l.}u{i=l.}r[i].}g{vti=i[l      | l.}u{X}Nr[I].}S$    
+0338 |                           | .}u{i=l.}r[i].}g{vti=i[l&      | .}u{X}Nr[I].}S$     
+0339 |                           | }u{i=l.}r[i].}g{vti=i[l&l      | }u{X}Nr[I].}S$      
+0340 |                           | u{i=l.}r[i].}g{vti=i[l&l]      | u{X}Nr[I].}S$       
+0341 |                           | {i=l.}r[i].}g{vti=i[l&l].      | {X}Nr[I].}S$        
+0342 |                           | i=l.}r[i].}g{vti=i[l&l].o      | X}Nr[I].}S$         
+0343 | X->i=E.N                  | i=l.}r[i].}g{vti=i[l&l].o      | X}Nr[I].}S$         
+0343 | SAVESTATE: 0029           |                                |
+0343 |                           | i=l.}r[i].}g{vti=i[l&l].o      | i=E.N}Nr[I].}S$     
+0344 |                           | =l.}r[i].}g{vti=i[l&l].o[      | =E.N}Nr[I].}S$      
+0345 |                           | l.}r[i].}g{vti=i[l&l].o[i      | E.N}Nr[I].}S$       
+0346 | E->l                      | l.}r[i].}g{vti=i[l&l].o[i      | E.N}Nr[I].}S$       
+0346 | SAVESTATE: 0030           |                                |
+0346 |                           | l.}r[i].}g{vti=i[l&l].o[i      | l.N}Nr[I].}S$       
+0347 |                           | .}r[i].}g{vti=i[l&l].o[i]      | .N}Nr[I].}S$        
+0348 |                           | }r[i].}g{vti=i[l&l].o[i].      | N}Nr[I].}S$         
+0349 | TNS_NORULECHAIN/NS_NORULE |                                |
+0349 | RESSTATE                  |                                |
+0349 |                           | l.}r[i].}g{vti=i[l&l].o[i      | E.N}Nr[I].}S$       
+0350 | E->lM                     | l.}r[i].}g{vti=i[l&l].o[i      | E.N}Nr[I].}S$       
+0350 | SAVESTATE: 0030           |                                |
+0350 |                           | l.}r[i].}g{vti=i[l&l].o[i      | lM.N}Nr[I].}S$      
+0351 |                           | .}r[i].}g{vti=i[l&l].o[i]      | M.N}Nr[I].}S$       
+0352 | TNS_NORULECHAIN/NS_NORULE |                                |
+0352 | RESSTATE                  |                                |
+0352 |                           | l.}r[i].}g{vti=i[l&l].o[i      | E.N}Nr[I].}S$       
+0353 | TNS_NORULECHAIN/NS_NORULE |                                |
+0353 | RESSTATE                  |                                |
+0353 |                           | i=l.}r[i].}g{vti=i[l&l].o      | X}Nr[I].}S$         
+0354 | X->iK.N                   | i=l.}r[i].}g{vti=i[l&l].o      | X}Nr[I].}S$         
+0354 | SAVESTATE: 0029           |                                |
+0354 |                           | i=l.}r[i].}g{vti=i[l&l].o      | iK.N}Nr[I].}S$      
+0355 |                           | =l.}r[i].}g{vti=i[l&l].o[      | K.N}Nr[I].}S$       
+0356 | TNS_NORULECHAIN/NS_NORULE |                                |
+0356 | RESSTATE                  |                                |
+0356 |                           | i=l.}r[i].}g{vti=i[l&l].o      | X}Nr[I].}S$         
+0357 | X->i=E.                   | i=l.}r[i].}g{vti=i[l&l].o      | X}Nr[I].}S$         
+0357 | SAVESTATE: 0029           |                                |
+0357 |                           | i=l.}r[i].}g{vti=i[l&l].o      | i=E.}Nr[I].}S$      
+0358 |                           | =l.}r[i].}g{vti=i[l&l].o[      | =E.}Nr[I].}S$       
+0359 |                           | l.}r[i].}g{vti=i[l&l].o[i      | E.}Nr[I].}S$        
+0360 | E->l                      | l.}r[i].}g{vti=i[l&l].o[i      | E.}Nr[I].}S$        
+0360 | SAVESTATE: 0030           |                                |
+0360 |                           | l.}r[i].}g{vti=i[l&l].o[i      | l.}Nr[I].}S$        
+0361 |                           | .}r[i].}g{vti=i[l&l].o[i]      | .}Nr[I].}S$         
+0362 |                           | }r[i].}g{vti=i[l&l].o[i].      | }Nr[I].}S$          
+0363 |                           | r[i].}g{vti=i[l&l].o[i].n      | Nr[I].}S$           
+0364 | TNS_NORULECHAIN/NS_NORULE |                                |
+0364 | RESSTATE                  |                                |
+0364 |                           | l.}r[i].}g{vti=i[l&l].o[i      | E.}Nr[I].}S$        
+0365 | E->lM                     | l.}r[i].}g{vti=i[l&l].o[i      | E.}Nr[I].}S$        
+0365 | SAVESTATE: 0030           |                                |
+0365 |                           | l.}r[i].}g{vti=i[l&l].o[i      | lM.}Nr[I].}S$       
+0366 |                           | .}r[i].}g{vti=i[l&l].o[i]      | M.}Nr[I].}S$        
+0367 | TNS_NORULECHAIN/NS_NORULE |                                |
+0367 | RESSTATE                  |                                |
+0367 |                           | l.}r[i].}g{vti=i[l&l].o[i      | E.}Nr[I].}S$        
+0368 | TNS_NORULECHAIN/NS_NORULE |                                |
+0368 | RESSTATE                  |                                |
+0368 |                           | i=l.}r[i].}g{vti=i[l&l].o      | X}Nr[I].}S$         
+0369 | X->iK.                    | i=l.}r[i].}g{vti=i[l&l].o      | X}Nr[I].}S$         
+0369 | SAVESTATE: 0029           |                                |
+0369 |                           | i=l.}r[i].}g{vti=i[l&l].o      | iK.}Nr[I].}S$       
+0370 |                           | =l.}r[i].}g{vti=i[l&l].o[      | K.}Nr[I].}S$        
+0371 | TNS_NORULECHAIN/NS_NORULE |                                |
+0371 | RESSTATE                  |                                |
+0371 |                           | i=l.}r[i].}g{vti=i[l&l].o      | X}Nr[I].}S$         
+0372 | TNS_NORULECHAIN/NS_NORULE |                                |
+0372 | RESSTATE                  |                                |
+0372 |                           | l.}u{i=l.}r[i].}g{vti=i[l      | E.}u{X}Nr[I].}S$    
+0373 | E->lM                     | l.}u{i=l.}r[i].}g{vti=i[l      | E.}u{X}Nr[I].}S$    
+0373 | SAVESTATE: 0028           |                                |
+0373 |                           | l.}u{i=l.}r[i].}g{vti=i[l      | lM.}u{X}Nr[I].}S$   
+0374 |                           | .}u{i=l.}r[i].}g{vti=i[l&      | M.}u{X}Nr[I].}S$    
+0375 | TNS_NORULECHAIN/NS_NORULE |                                |
+0375 | RESSTATE                  |                                |
+0375 |                           | l.}u{i=l.}r[i].}g{vti=i[l      | E.}u{X}Nr[I].}S$    
+0376 | TNS_NORULECHAIN/NS_NORULE |                                |
+0376 | RESSTATE                  |                                |
+0376 |                           | i=l.}u{i=l.}r[i].}g{vti=i      | X}u{X}Nr[I].}S$     
+0377 | X->iK.                    | i=l.}u{i=l.}r[i].}g{vti=i      | X}u{X}Nr[I].}S$     
+0377 | SAVESTATE: 0027           |                                |
+0377 |                           | i=l.}u{i=l.}r[i].}g{vti=i      | iK.}u{X}Nr[I].}S$   
+0378 |                           | =l.}u{i=l.}r[i].}g{vti=i[      | K.}u{X}Nr[I].}S$    
+0379 | TNS_NORULECHAIN/NS_NORULE |                                |
+0379 | RESSTATE                  |                                |
+0379 |                           | i=l.}u{i=l.}r[i].}g{vti=i      | X}u{X}Nr[I].}S$     
+0380 | TNS_NORULECHAIN/NS_NORULE |                                |
+0380 | RESSTATE                  |                                |
+0380 |                           | ibl]{i=l.}u{i=l.}r[i].}g{      | R]{X}u{X}Nr[I].}S$  
+0381 | TNS_NORULECHAIN/NS_NORULE |                                |
+0381 | RESSTATE                  |                                |
+0381 |                           | c[ibl]{i=l.}u{i=l.}r[i].}      | Nr[I].}S$           
+0382 | N->c[R]{X}                | c[ibl]{i=l.}u{i=l.}r[i].}      | Nr[I].}S$           
+0382 | SAVESTATE: 0025           |                                |
+0382 |                           | c[ibl]{i=l.}u{i=l.}r[i].}      | c[R]{X}r[I].}S$     
+0383 |                           | [ibl]{i=l.}u{i=l.}r[i].}g      | [R]{X}r[I].}S$      
+0384 |                           | ibl]{i=l.}u{i=l.}r[i].}g{      | R]{X}r[I].}S$       
+0385 | R->i                      | ibl]{i=l.}u{i=l.}r[i].}g{      | R]{X}r[I].}S$       
+0385 | SAVESTATE: 0026           |                                |
+0385 |                           | ibl]{i=l.}u{i=l.}r[i].}g{      | i]{X}r[I].}S$       
+0386 |                           | bl]{i=l.}u{i=l.}r[i].}g{v      | ]{X}r[I].}S$        
+0387 | TS_NOK/NS_NORULECHAIN     |                                |
+0387 | RESSTATE                  |                                |
+0387 |                           | ibl]{i=l.}u{i=l.}r[i].}g{      | R]{X}r[I].}S$       
+0388 | R->ibi                    | ibl]{i=l.}u{i=l.}r[i].}g{      | R]{X}r[I].}S$       
+0388 | SAVESTATE: 0026           |                                |
+0388 |                           | ibl]{i=l.}u{i=l.}r[i].}g{      | ibi]{X}r[I].}S$     
+0389 |                           | bl]{i=l.}u{i=l.}r[i].}g{v      | bi]{X}r[I].}S$      
+0390 |                           | l]{i=l.}u{i=l.}r[i].}g{vt      | i]{X}r[I].}S$       
+0391 | TS_NOK/NS_NORULECHAIN     |                                |
+0391 | RESSTATE                  |                                |
+0391 |                           | ibl]{i=l.}u{i=l.}r[i].}g{      | R]{X}r[I].}S$       
+0392 | R->ibl                    | ibl]{i=l.}u{i=l.}r[i].}g{      | R]{X}r[I].}S$       
+0392 | SAVESTATE: 0026           |                                |
+0392 |                           | ibl]{i=l.}u{i=l.}r[i].}g{      | ibl]{X}r[I].}S$     
+0393 |                           | bl]{i=l.}u{i=l.}r[i].}g{v      | bl]{X}r[I].}S$      
+0394 |                           | l]{i=l.}u{i=l.}r[i].}g{vt      | l]{X}r[I].}S$       
+0395 |                           | ]{i=l.}u{i=l.}r[i].}g{vti      | ]{X}r[I].}S$        
+0396 |                           | {i=l.}u{i=l.}r[i].}g{vti=      | {X}r[I].}S$         
+0397 |                           | i=l.}u{i=l.}r[i].}g{vti=i      | X}r[I].}S$          
+0398 | X->i=E.N                  | i=l.}u{i=l.}r[i].}g{vti=i      | X}r[I].}S$          
+0398 | SAVESTATE: 0027           |                                |
+0398 |                           | i=l.}u{i=l.}r[i].}g{vti=i      | i=E.N}r[I].}S$      
+0399 |                           | =l.}u{i=l.}r[i].}g{vti=i[      | =E.N}r[I].}S$       
+0400 |                           | l.}u{i=l.}r[i].}g{vti=i[l      | E.N}r[I].}S$        
+0401 | E->l                      | l.}u{i=l.}r[i].}g{vti=i[l      | E.N}r[I].}S$        
+0401 | SAVESTATE: 0028           |                                |
+0401 |                           | l.}u{i=l.}r[i].}g{vti=i[l      | l.N}r[I].}S$        
+0402 |                           | .}u{i=l.}r[i].}g{vti=i[l&      | .N}r[I].}S$         
+0403 |                           | }u{i=l.}r[i].}g{vti=i[l&l      | N}r[I].}S$          
+0404 | TNS_NORULECHAIN/NS_NORULE |                                |
+0404 | RESSTATE                  |                                |
+0404 |                           | l.}u{i=l.}r[i].}g{vti=i[l      | E.N}r[I].}S$        
+0405 | E->lM                     | l.}u{i=l.}r[i].}g{vti=i[l      | E.N}r[I].}S$        
+0405 | SAVESTATE: 0028           |                                |
+0405 |                           | l.}u{i=l.}r[i].}g{vti=i[l      | lM.N}r[I].}S$       
+0406 |                           | .}u{i=l.}r[i].}g{vti=i[l&      | M.N}r[I].}S$        
+0407 | TNS_NORULECHAIN/NS_NORULE |                                |
+0407 | RESSTATE                  |                                |
+0407 |                           | l.}u{i=l.}r[i].}g{vti=i[l      | E.N}r[I].}S$        
+0408 | TNS_NORULECHAIN/NS_NORULE |                                |
+0408 | RESSTATE                  |                                |
+0408 |                           | i=l.}u{i=l.}r[i].}g{vti=i      | X}r[I].}S$          
+0409 | X->iK.N                   | i=l.}u{i=l.}r[i].}g{vti=i      | X}r[I].}S$          
+0409 | SAVESTATE: 0027           |                                |
+0409 |                           | i=l.}u{i=l.}r[i].}g{vti=i      | iK.N}r[I].}S$       
+0410 |                           | =l.}u{i=l.}r[i].}g{vti=i[      | K.N}r[I].}S$        
+0411 | TNS_NORULECHAIN/NS_NORULE |                                |
+0411 | RESSTATE                  |                                |
+0411 |                           | i=l.}u{i=l.}r[i].}g{vti=i      | X}r[I].}S$          
+0412 | X->i=E.                   | i=l.}u{i=l.}r[i].}g{vti=i      | X}r[I].}S$          
+0412 | SAVESTATE: 0027           |                                |
+0412 |                           | i=l.}u{i=l.}r[i].}g{vti=i      | i=E.}r[I].}S$       
+0413 |                           | =l.}u{i=l.}r[i].}g{vti=i[      | =E.}r[I].}S$        
+0414 |                           | l.}u{i=l.}r[i].}g{vti=i[l      | E.}r[I].}S$         
+0415 | E->l                      | l.}u{i=l.}r[i].}g{vti=i[l      | E.}r[I].}S$         
+0415 | SAVESTATE: 0028           |                                |
+0415 |                           | l.}u{i=l.}r[i].}g{vti=i[l      | l.}r[I].}S$         
+0416 |                           | .}u{i=l.}r[i].}g{vti=i[l&      | .}r[I].}S$          
+0417 |                           | }u{i=l.}r[i].}g{vti=i[l&l      | }r[I].}S$           
+0418 |                           | u{i=l.}r[i].}g{vti=i[l&l]      | r[I].}S$            
+0419 | TS_NOK/NS_NORULECHAIN     |                                |
+0419 | RESSTATE                  |                                |
+0419 |                           | l.}u{i=l.}r[i].}g{vti=i[l      | E.}r[I].}S$         
+0420 | E->lM                     | l.}u{i=l.}r[i].}g{vti=i[l      | E.}r[I].}S$         
+0420 | SAVESTATE: 0028           |                                |
+0420 |                           | l.}u{i=l.}r[i].}g{vti=i[l      | lM.}r[I].}S$        
+0421 |                           | .}u{i=l.}r[i].}g{vti=i[l&      | M.}r[I].}S$         
+0422 | TNS_NORULECHAIN/NS_NORULE |                                |
+0422 | RESSTATE                  |                                |
+0422 |                           | l.}u{i=l.}r[i].}g{vti=i[l      | E.}r[I].}S$         
+0423 | TNS_NORULECHAIN/NS_NORULE |                                |
+0423 | RESSTATE                  |                                |
+0423 |                           | i=l.}u{i=l.}r[i].}g{vti=i      | X}r[I].}S$          
+0424 | X->iK.                    | i=l.}u{i=l.}r[i].}g{vti=i      | X}r[I].}S$          
+0424 | SAVESTATE: 0027           |                                |
+0424 |                           | i=l.}u{i=l.}r[i].}g{vti=i      | iK.}r[I].}S$        
+0425 |                           | =l.}u{i=l.}r[i].}g{vti=i[      | K.}r[I].}S$         
+0426 | TNS_NORULECHAIN/NS_NORULE |                                |
+0426 | RESSTATE                  |                                |
+0426 |                           | i=l.}u{i=l.}r[i].}g{vti=i      | X}r[I].}S$          
+0427 | TNS_NORULECHAIN/NS_NORULE |                                |
+0427 | RESSTATE                  |                                |
+0427 |                           | ibl]{i=l.}u{i=l.}r[i].}g{      | R]{X}r[I].}S$       
+0428 | TNS_NORULECHAIN/NS_NORULE |                                |
+0428 | RESSTATE                  |                                |
+0428 |                           | c[ibl]{i=l.}u{i=l.}r[i].}      | Nr[I].}S$           
+0429 | N->c[R]{X}u{X}            | c[ibl]{i=l.}u{i=l.}r[i].}      | Nr[I].}S$           
+0429 | SAVESTATE: 0025           |                                |
+0429 |                           | c[ibl]{i=l.}u{i=l.}r[i].}      | c[R]{X}u{X}r[I].}S$ 
+0430 |                           | [ibl]{i=l.}u{i=l.}r[i].}g      | [R]{X}u{X}r[I].}S$  
+0431 |                           | ibl]{i=l.}u{i=l.}r[i].}g{      | R]{X}u{X}r[I].}S$   
+0432 | R->i                      | ibl]{i=l.}u{i=l.}r[i].}g{      | R]{X}u{X}r[I].}S$   
+0432 | SAVESTATE: 0026           |                                |
+0432 |                           | ibl]{i=l.}u{i=l.}r[i].}g{      | i]{X}u{X}r[I].}S$   
+0433 |                           | bl]{i=l.}u{i=l.}r[i].}g{v      | ]{X}u{X}r[I].}S$    
+0434 | TS_NOK/NS_NORULECHAIN     |                                |
+0434 | RESSTATE                  |                                |
+0434 |                           | ibl]{i=l.}u{i=l.}r[i].}g{      | R]{X}u{X}r[I].}S$   
+0435 | R->ibi                    | ibl]{i=l.}u{i=l.}r[i].}g{      | R]{X}u{X}r[I].}S$   
+0435 | SAVESTATE: 0026           |                                |
+0435 |                           | ibl]{i=l.}u{i=l.}r[i].}g{      | ibi]{X}u{X}r[I].}S$ 
+0436 |                           | bl]{i=l.}u{i=l.}r[i].}g{v      | bi]{X}u{X}r[I].}S$  
+0437 |                           | l]{i=l.}u{i=l.}r[i].}g{vt      | i]{X}u{X}r[I].}S$   
+0438 | TS_NOK/NS_NORULECHAIN     |                                |
+0438 | RESSTATE                  |                                |
+0438 |                           | ibl]{i=l.}u{i=l.}r[i].}g{      | R]{X}u{X}r[I].}S$   
+0439 | R->ibl                    | ibl]{i=l.}u{i=l.}r[i].}g{      | R]{X}u{X}r[I].}S$   
+0439 | SAVESTATE: 0026           |                                |
+0439 |                           | ibl]{i=l.}u{i=l.}r[i].}g{      | ibl]{X}u{X}r[I].}S$ 
+0440 |                           | bl]{i=l.}u{i=l.}r[i].}g{v      | bl]{X}u{X}r[I].}S$  
+0441 |                           | l]{i=l.}u{i=l.}r[i].}g{vt      | l]{X}u{X}r[I].}S$   
+0442 |                           | ]{i=l.}u{i=l.}r[i].}g{vti      | ]{X}u{X}r[I].}S$    
+0443 |                           | {i=l.}u{i=l.}r[i].}g{vti=      | {X}u{X}r[I].}S$     
+0444 |                           | i=l.}u{i=l.}r[i].}g{vti=i      | X}u{X}r[I].}S$      
+0445 | X->i=E.N                  | i=l.}u{i=l.}r[i].}g{vti=i      | X}u{X}r[I].}S$      
+0445 | SAVESTATE: 0027           |                                |
+0445 |                           | i=l.}u{i=l.}r[i].}g{vti=i      | i=E.N}u{X}r[I].}S$  
+0446 |                           | =l.}u{i=l.}r[i].}g{vti=i[      | =E.N}u{X}r[I].}S$   
+0447 |                           | l.}u{i=l.}r[i].}g{vti=i[l      | E.N}u{X}r[I].}S$    
+0448 | E->l                      | l.}u{i=l.}r[i].}g{vti=i[l      | E.N}u{X}r[I].}S$    
+0448 | SAVESTATE: 0028           |                                |
+0448 |                           | l.}u{i=l.}r[i].}g{vti=i[l      | l.N}u{X}r[I].}S$    
+0449 |                           | .}u{i=l.}r[i].}g{vti=i[l&      | .N}u{X}r[I].}S$     
+0450 |                           | }u{i=l.}r[i].}g{vti=i[l&l      | N}u{X}r[I].}S$      
+0451 | TNS_NORULECHAIN/NS_NORULE |                                |
+0451 | RESSTATE                  |                                |
+0451 |                           | l.}u{i=l.}r[i].}g{vti=i[l      | E.N}u{X}r[I].}S$    
+0452 | E->lM                     | l.}u{i=l.}r[i].}g{vti=i[l      | E.N}u{X}r[I].}S$    
+0452 | SAVESTATE: 0028           |                                |
+0452 |                           | l.}u{i=l.}r[i].}g{vti=i[l      | lM.N}u{X}r[I].}S$   
+0453 |                           | .}u{i=l.}r[i].}g{vti=i[l&      | M.N}u{X}r[I].}S$    
+0454 | TNS_NORULECHAIN/NS_NORULE |                                |
+0454 | RESSTATE                  |                                |
+0454 |                           | l.}u{i=l.}r[i].}g{vti=i[l      | E.N}u{X}r[I].}S$    
+0455 | TNS_NORULECHAIN/NS_NORULE |                                |
+0455 | RESSTATE                  |                                |
+0455 |                           | i=l.}u{i=l.}r[i].}g{vti=i      | X}u{X}r[I].}S$      
+0456 | X->iK.N                   | i=l.}u{i=l.}r[i].}g{vti=i      | X}u{X}r[I].}S$      
+0456 | SAVESTATE: 0027           |                                |
+0456 |                           | i=l.}u{i=l.}r[i].}g{vti=i      | iK.N}u{X}r[I].}S$   
+0457 |                           | =l.}u{i=l.}r[i].}g{vti=i[      | K.N}u{X}r[I].}S$    
+0458 | TNS_NORULECHAIN/NS_NORULE |                                |
+0458 | RESSTATE                  |                                |
+0458 |                           | i=l.}u{i=l.}r[i].}g{vti=i      | X}u{X}r[I].}S$      
+0459 | X->i=E.                   | i=l.}u{i=l.}r[i].}g{vti=i      | X}u{X}r[I].}S$      
+0459 | SAVESTATE: 0027           |                                |
+0459 |                           | i=l.}u{i=l.}r[i].}g{vti=i      | i=E.}u{X}r[I].}S$   
+0460 |                           | =l.}u{i=l.}r[i].}g{vti=i[      | =E.}u{X}r[I].}S$    
+0461 |                           | l.}u{i=l.}r[i].}g{vti=i[l      | E.}u{X}r[I].}S$     
+0462 | E->l                      | l.}u{i=l.}r[i].}g{vti=i[l      | E.}u{X}r[I].}S$     
+0462 | SAVESTATE: 0028           |                                |
+0462 |                           | l.}u{i=l.}r[i].}g{vti=i[l      | l.}u{X}r[I].}S$     
+0463 |                           | .}u{i=l.}r[i].}g{vti=i[l&      | .}u{X}r[I].}S$      
+0464 |                           | }u{i=l.}r[i].}g{vti=i[l&l      | }u{X}r[I].}S$       
+0465 |                           | u{i=l.}r[i].}g{vti=i[l&l]      | u{X}r[I].}S$        
+0466 |                           | {i=l.}r[i].}g{vti=i[l&l].      | {X}r[I].}S$         
+0467 |                           | i=l.}r[i].}g{vti=i[l&l].o      | X}r[I].}S$          
+0468 | X->i=E.N                  | i=l.}r[i].}g{vti=i[l&l].o      | X}r[I].}S$          
+0468 | SAVESTATE: 0029           |                                |
+0468 |                           | i=l.}r[i].}g{vti=i[l&l].o      | i=E.N}r[I].}S$      
+0469 |                           | =l.}r[i].}g{vti=i[l&l].o[      | =E.N}r[I].}S$       
+0470 |                           | l.}r[i].}g{vti=i[l&l].o[i      | E.N}r[I].}S$        
+0471 | E->l                      | l.}r[i].}g{vti=i[l&l].o[i      | E.N}r[I].}S$        
+0471 | SAVESTATE: 0030           |                                |
+0471 |                           | l.}r[i].}g{vti=i[l&l].o[i      | l.N}r[I].}S$        
+0472 |                           | .}r[i].}g{vti=i[l&l].o[i]      | .N}r[I].}S$         
+0473 |                           | }r[i].}g{vti=i[l&l].o[i].      | N}r[I].}S$          
+0474 | TNS_NORULECHAIN/NS_NORULE |                                |
+0474 | RESSTATE                  |                                |
+0474 |                           | l.}r[i].}g{vti=i[l&l].o[i      | E.N}r[I].}S$        
+0475 | E->lM                     | l.}r[i].}g{vti=i[l&l].o[i      | E.N}r[I].}S$        
+0475 | SAVESTATE: 0030           |                                |
+0475 |                           | l.}r[i].}g{vti=i[l&l].o[i      | lM.N}r[I].}S$       
+0476 |                           | .}r[i].}g{vti=i[l&l].o[i]      | M.N}r[I].}S$        
+0477 | TNS_NORULECHAIN/NS_NORULE |                                |
+0477 | RESSTATE                  |                                |
+0477 |                           | l.}r[i].}g{vti=i[l&l].o[i      | E.N}r[I].}S$        
+0478 | TNS_NORULECHAIN/NS_NORULE |                                |
+0478 | RESSTATE                  |                                |
+0478 |                           | i=l.}r[i].}g{vti=i[l&l].o      | X}r[I].}S$          
+0479 | X->iK.N                   | i=l.}r[i].}g{vti=i[l&l].o      | X}r[I].}S$          
+0479 | SAVESTATE: 0029           |                                |
+0479 |                           | i=l.}r[i].}g{vti=i[l&l].o      | iK.N}r[I].}S$       
+0480 |                           | =l.}r[i].}g{vti=i[l&l].o[      | K.N}r[I].}S$        
+0481 | TNS_NORULECHAIN/NS_NORULE |                                |
+0481 | RESSTATE                  |                                |
+0481 |                           | i=l.}r[i].}g{vti=i[l&l].o      | X}r[I].}S$          
+0482 | X->i=E.                   | i=l.}r[i].}g{vti=i[l&l].o      | X}r[I].}S$          
+0482 | SAVESTATE: 0029           |                                |
+0482 |                           | i=l.}r[i].}g{vti=i[l&l].o      | i=E.}r[I].}S$       
+0483 |                           | =l.}r[i].}g{vti=i[l&l].o[      | =E.}r[I].}S$        
+0484 |                           | l.}r[i].}g{vti=i[l&l].o[i      | E.}r[I].}S$         
+0485 | E->l                      | l.}r[i].}g{vti=i[l&l].o[i      | E.}r[I].}S$         
+0485 | SAVESTATE: 0030           |                                |
+0485 |                           | l.}r[i].}g{vti=i[l&l].o[i      | l.}r[I].}S$         
+0486 |                           | .}r[i].}g{vti=i[l&l].o[i]      | .}r[I].}S$          
+0487 |                           | }r[i].}g{vti=i[l&l].o[i].      | }r[I].}S$           
+0488 |                           | r[i].}g{vti=i[l&l].o[i].n      | r[I].}S$            
+0489 |                           | [i].}g{vti=i[l&l].o[i].n.      | [I].}S$             
+0490 |                           | i].}g{vti=i[l&l].o[i].n.v      | I].}S$              
+0491 | I->i                      | i].}g{vti=i[l&l].o[i].n.v      | I].}S$              
+0491 | SAVESTATE: 0031           |                                |
+0491 |                           | i].}g{vti=i[l&l].o[i].n.v      | i].}S$              
+0492 |                           | ].}g{vti=i[l&l].o[i].n.vt      | ].}S$               
+0493 |                           | .}g{vti=i[l&l].o[i].n.vti      | .}S$                
+0494 |                           | }g{vti=i[l&l].o[i].n.vti=      | }S$                 
+0495 |                           | g{vti=i[l&l].o[i].n.vti=!      | S$                  
+0496 | S->g{N}                   | g{vti=i[l&l].o[i].n.vti=!      | S$                  
+0496 | SAVESTATE: 0032           |                                |
+0496 |                           | g{vti=i[l&l].o[i].n.vti=!      | g{N}$               
+0497 |                           | {vti=i[l&l].o[i].n.vti=![      | {N}$                
+0498 |                           | vti=i[l&l].o[i].n.vti=![l      | N}$                 
+0499 | N->vti.N                  | vti=i[l&l].o[i].n.vti=![l      | N}$                 
+0499 | SAVESTATE: 0033           |                                |
+0499 |                           | vti=i[l&l].o[i].n.vti=![l      | vti.N}$             
+0500 |                           | ti=i[l&l].o[i].n.vti=![l]      | ti.N}$              
+0501 |                           | i=i[l&l].o[i].n.vti=![l].      | i.N}$               
+0502 |                           | =i[l&l].o[i].n.vti=![l].o      | .N}$                
+0503 | TS_NOK/NS_NORULECHAIN     |                                |
+0503 | RESSTATE                  |                                |
+0503 |                           | vti=i[l&l].o[i].n.vti=![l      | N}$                 
+0504 | N->vti=E.N                | vti=i[l&l].o[i].n.vti=![l      | N}$                 
+0504 | SAVESTATE: 0033           |                                |
+0504 |                           | vti=i[l&l].o[i].n.vti=![l      | vti=E.N}$           
+0505 |                           | ti=i[l&l].o[i].n.vti=![l]      | ti=E.N}$            
+0506 |                           | i=i[l&l].o[i].n.vti=![l].      | i=E.N}$             
+0507 |                           | =i[l&l].o[i].n.vti=![l].o      | =E.N}$              
+0508 |                           | i[l&l].o[i].n.vti=![l].o[      | E.N}$               
+0509 | E->i                      | i[l&l].o[i].n.vti=![l].o[      | E.N}$               
+0509 | SAVESTATE: 0034           |                                |
+0509 |                           | i[l&l].o[i].n.vti=![l].o[      | i.N}$               
+0510 |                           | [l&l].o[i].n.vti=![l].o[i      | .N}$                
+0511 | TS_NOK/NS_NORULECHAIN     |                                |
+0511 | RESSTATE                  |                                |
+0511 |                           | i[l&l].o[i].n.vti=![l].o[      | E.N}$               
+0512 | E->iK                     | i[l&l].o[i].n.vti=![l].o[      | E.N}$               
+0512 | SAVESTATE: 0034           |                                |
+0512 |                           | i[l&l].o[i].n.vti=![l].o[      | iK.N}$              
+0513 |                           | [l&l].o[i].n.vti=![l].o[i      | K.N}$               
+0514 | K->[W]                    | [l&l].o[i].n.vti=![l].o[i      | K.N}$               
+0514 | SAVESTATE: 0035           |                                |
+0514 |                           | [l&l].o[i].n.vti=![l].o[i      | [W].N}$             
+0515 |                           | l&l].o[i].n.vti=![l].o[i]      | W].N}$              
+0516 | W->l                      | l&l].o[i].n.vti=![l].o[i]      | W].N}$              
+0516 | SAVESTATE: 0036           |                                |
+0516 |                           | l&l].o[i].n.vti=![l].o[i]      | l].N}$              
+0517 |                           | &l].o[i].n.vti=![l].o[i].      | ].N}$               
+0518 | TS_NOK/NS_NORULECHAIN     |                                |
+0518 | RESSTATE                  |                                |
+0518 |                           | l&l].o[i].n.vti=![l].o[i]      | W].N}$              
+0519 | W->l&W                    | l&l].o[i].n.vti=![l].o[i]      | W].N}$              
+0519 | SAVESTATE: 0036           |                                |
+0519 |                           | l&l].o[i].n.vti=![l].o[i]      | l&W].N}$            
+0520 |                           | &l].o[i].n.vti=![l].o[i].      | &W].N}$             
+0521 |                           | l].o[i].n.vti=![l].o[i].n      | W].N}$              
+0522 | W->l                      | l].o[i].n.vti=![l].o[i].n      | W].N}$              
+0522 | SAVESTATE: 0037           |                                |
+0522 |                           | l].o[i].n.vti=![l].o[i].n      | l].N}$              
+0523 |                           | ].o[i].n.vti=![l].o[i].n.      | ].N}$               
+0524 |                           | .o[i].n.vti=![l].o[i].n.v      | .N}$                
+0525 |                           | o[i].n.vti=![l].o[i].n.vt      | N}$                 
+0526 | N->o[I].N                 | o[i].n.vti=![l].o[i].n.vt      | N}$                 
+0526 | SAVESTATE: 0038           |                                |
+0526 |                           | o[i].n.vti=![l].o[i].n.vt      | o[I].N}$            
+0527 |                           | [i].n.vti=![l].o[i].n.vti      | [I].N}$             
+0528 |                           | i].n.vti=![l].o[i].n.vti=      | I].N}$              
+0529 | I->i                      | i].n.vti=![l].o[i].n.vti=      | I].N}$              
+0529 | SAVESTATE: 0039           |                                |
+0529 |                           | i].n.vti=![l].o[i].n.vti=      | i].N}$              
+0530 |                           | ].n.vti=![l].o[i].n.vti=l      | ].N}$               
+0531 |                           | .n.vti=![l].o[i].n.vti=l.      | .N}$                
+0532 |                           | n.vti=![l].o[i].n.vti=l.v      | N}$                 
+0533 | N->n.N                    | n.vti=![l].o[i].n.vti=l.v      | N}$                 
+0533 | SAVESTATE: 0040           |                                |
+0533 |                           | n.vti=![l].o[i].n.vti=l.v      | n.N}$               
+0534 |                           | .vti=![l].o[i].n.vti=l.vt      | .N}$                
+0535 |                           | vti=![l].o[i].n.vti=l.vti      | N}$                 
+0536 | N->vti.N                  | vti=![l].o[i].n.vti=l.vti      | N}$                 
+0536 | SAVESTATE: 0041           |                                |
+0536 |                           | vti=![l].o[i].n.vti=l.vti      | vti.N}$             
+0537 |                           | ti=![l].o[i].n.vti=l.vti=      | ti.N}$              
+0538 |                           | i=![l].o[i].n.vti=l.vti=l      | i.N}$               
+0539 |                           | =![l].o[i].n.vti=l.vti=l.      | .N}$                
+0540 | TS_NOK/NS_NORULECHAIN     |                                |
+0540 | RESSTATE                  |                                |
+0540 |                           | vti=![l].o[i].n.vti=l.vti      | N}$                 
+0541 | N->vti=E.N                | vti=![l].o[i].n.vti=l.vti      | N}$                 
+0541 | SAVESTATE: 0041           |                                |
+0541 |                           | vti=![l].o[i].n.vti=l.vti      | vti=E.N}$           
+0542 |                           | ti=![l].o[i].n.vti=l.vti=      | ti=E.N}$            
+0543 |                           | i=![l].o[i].n.vti=l.vti=l      | i=E.N}$             
+0544 |                           | =![l].o[i].n.vti=l.vti=l.      | =E.N}$              
+0545 |                           | ![l].o[i].n.vti=l.vti=l.c      | E.N}$               
+0546 | E->!K                     | ![l].o[i].n.vti=l.vti=l.c      | E.N}$               
+0546 | SAVESTATE: 0042           |                                |
+0546 |                           | ![l].o[i].n.vti=l.vti=l.c      | !K.N}$              
+0547 |                           | [l].o[i].n.vti=l.vti=l.c[      | K.N}$               
+0548 | K->[W]                    | [l].o[i].n.vti=l.vti=l.c[      | K.N}$               
+0548 | SAVESTATE: 0043           |                                |
+0548 |                           | [l].o[i].n.vti=l.vti=l.c[      | [W].N}$             
+0549 |                           | l].o[i].n.vti=l.vti=l.c[i      | W].N}$              
+0550 | W->l                      | l].o[i].n.vti=l.vti=l.c[i      | W].N}$              
+0550 | SAVESTATE: 0044           |                                |
+0550 |                           | l].o[i].n.vti=l.vti=l.c[i      | l].N}$              
+0551 |                           | ].o[i].n.vti=l.vti=l.c[i]      | ].N}$               
+0552 |                           | .o[i].n.vti=l.vti=l.c[i]{      | .N}$                
+0553 |                           | o[i].n.vti=l.vti=l.c[i]{o      | N}$                 
+0554 | N->o[I].N                 | o[i].n.vti=l.vti=l.c[i]{o      | N}$                 
+0554 | SAVESTATE: 0045           |                                |
+0554 |                           | o[i].n.vti=l.vti=l.c[i]{o      | o[I].N}$            
+0555 |                           | [i].n.vti=l.vti=l.c[i]{o[      | [I].N}$             
+0556 |                           | i].n.vti=l.vti=l.c[i]{o[i      | I].N}$              
+0557 | I->i                      | i].n.vti=l.vti=l.c[i]{o[i      | I].N}$              
+0557 | SAVESTATE: 0046           |                                |
+0557 |                           | i].n.vti=l.vti=l.c[i]{o[i      | i].N}$              
+0558 |                           | ].n.vti=l.vti=l.c[i]{o[i]      | ].N}$               
+0559 |                           | .n.vti=l.vti=l.c[i]{o[i].      | .N}$                
+0560 |                           | n.vti=l.vti=l.c[i]{o[i].n      | N}$                 
+0561 | N->n.N                    | n.vti=l.vti=l.c[i]{o[i].n      | N}$                 
+0561 | SAVESTATE: 0047           |                                |
+0561 |                           | n.vti=l.vti=l.c[i]{o[i].n      | n.N}$               
+0562 |                           | .vti=l.vti=l.c[i]{o[i].n.      | .N}$                
+0563 |                           | vti=l.vti=l.c[i]{o[i].n.}      | N}$                 
+0564 | N->vti.N                  | vti=l.vti=l.c[i]{o[i].n.}      | N}$                 
+0564 | SAVESTATE: 0048           |                                |
+0564 |                           | vti=l.vti=l.c[i]{o[i].n.}      | vti.N}$             
+0565 |                           | ti=l.vti=l.c[i]{o[i].n.}u      | ti.N}$              
+0566 |                           | i=l.vti=l.c[i]{o[i].n.}u{      | i.N}$               
+0567 |                           | =l.vti=l.c[i]{o[i].n.}u{o      | .N}$                
+0568 | TS_NOK/NS_NORULECHAIN     |                                |
+0568 | RESSTATE                  |                                |
+0568 |                           | vti=l.vti=l.c[i]{o[i].n.}      | N}$                 
+0569 | N->vti=E.N                | vti=l.vti=l.c[i]{o[i].n.}      | N}$                 
+0569 | SAVESTATE: 0048           |                                |
+0569 |                           | vti=l.vti=l.c[i]{o[i].n.}      | vti=E.N}$           
+0570 |                           | ti=l.vti=l.c[i]{o[i].n.}u      | ti=E.N}$            
+0571 |                           | i=l.vti=l.c[i]{o[i].n.}u{      | i=E.N}$             
+0572 |                           | =l.vti=l.c[i]{o[i].n.}u{o      | =E.N}$              
+0573 |                           | l.vti=l.c[i]{o[i].n.}u{o[      | E.N}$               
+0574 | E->l                      | l.vti=l.c[i]{o[i].n.}u{o[      | E.N}$               
+0574 | SAVESTATE: 0049           |                                |
+0574 |                           | l.vti=l.c[i]{o[i].n.}u{o[      | l.N}$               
+0575 |                           | .vti=l.c[i]{o[i].n.}u{o[l      | .N}$                
+0576 |                           | vti=l.c[i]{o[i].n.}u{o[l]      | N}$                 
+0577 | N->vti.N                  | vti=l.c[i]{o[i].n.}u{o[l]      | N}$                 
+0577 | SAVESTATE: 0050           |                                |
+0577 |                           | vti=l.c[i]{o[i].n.}u{o[l]      | vti.N}$             
+0578 |                           | ti=l.c[i]{o[i].n.}u{o[l].      | ti.N}$              
+0579 |                           | i=l.c[i]{o[i].n.}u{o[l].n      | i.N}$               
+0580 |                           | =l.c[i]{o[i].n.}u{o[l].n.      | .N}$                
+0581 | TS_NOK/NS_NORULECHAIN     |                                |
+0581 | RESSTATE                  |                                |
+0581 |                           | vti=l.c[i]{o[i].n.}u{o[l]      | N}$                 
+0582 | N->vti=E.N                | vti=l.c[i]{o[i].n.}u{o[l]      | N}$                 
+0582 | SAVESTATE: 0050           |                                |
+0582 |                           | vti=l.c[i]{o[i].n.}u{o[l]      | vti=E.N}$           
+0583 |                           | ti=l.c[i]{o[i].n.}u{o[l].      | ti=E.N}$            
+0584 |                           | i=l.c[i]{o[i].n.}u{o[l].n      | i=E.N}$             
+0585 |                           | =l.c[i]{o[i].n.}u{o[l].n.      | =E.N}$              
+0586 |                           | l.c[i]{o[i].n.}u{o[l].n.}      | E.N}$               
+0587 | E->l                      | l.c[i]{o[i].n.}u{o[l].n.}      | E.N}$               
+0587 | SAVESTATE: 0051           |                                |
+0587 |                           | l.c[i]{o[i].n.}u{o[l].n.}      | l.N}$               
+0588 |                           | .c[i]{o[i].n.}u{o[l].n.}v      | .N}$                
+0589 |                           | c[i]{o[i].n.}u{o[l].n.}vt      | N}$                 
+0590 | N->c[R]{X}N               | c[i]{o[i].n.}u{o[l].n.}vt      | N}$                 
+0590 | SAVESTATE: 0052           |                                |
+0590 |                           | c[i]{o[i].n.}u{o[l].n.}vt      | c[R]{X}N}$          
+0591 |                           | [i]{o[i].n.}u{o[l].n.}vti      | [R]{X}N}$           
+0592 |                           | i]{o[i].n.}u{o[l].n.}vti=      | R]{X}N}$            
+0593 | R->i                      | i]{o[i].n.}u{o[l].n.}vti=      | R]{X}N}$            
+0593 | SAVESTATE: 0053           |                                |
+0593 |                           | i]{o[i].n.}u{o[l].n.}vti=      | i]{X}N}$            
+0594 |                           | ]{o[i].n.}u{o[l].n.}vti=i      | ]{X}N}$             
+0595 |                           | {o[i].n.}u{o[l].n.}vti=i[      | {X}N}$              
+0596 |                           | o[i].n.}u{o[l].n.}vti=i[l      | X}N}$               
+0597 | X->o[I].N                 | o[i].n.}u{o[l].n.}vti=i[l      | X}N}$               
+0597 | SAVESTATE: 0054           |                                |
+0597 |                           | o[i].n.}u{o[l].n.}vti=i[l      | o[I].N}N}$          
+0598 |                           | [i].n.}u{o[l].n.}vti=i[l]      | [I].N}N}$           
+0599 |                           | i].n.}u{o[l].n.}vti=i[l].      | I].N}N}$            
+0600 | I->i                      | i].n.}u{o[l].n.}vti=i[l].      | I].N}N}$            
+0600 | SAVESTATE: 0055           |                                |
+0600 |                           | i].n.}u{o[l].n.}vti=i[l].      | i].N}N}$            
+0601 |                           | ].n.}u{o[l].n.}vti=i[l].c      | ].N}N}$             
+0602 |                           | .n.}u{o[l].n.}vti=i[l].c[      | .N}N}$              
+0603 |                           | n.}u{o[l].n.}vti=i[l].c[i      | N}N}$               
+0604 | N->n.N                    | n.}u{o[l].n.}vti=i[l].c[i      | N}N}$               
+0604 | SAVESTATE: 0056           |                                |
+0604 |                           | n.}u{o[l].n.}vti=i[l].c[i      | n.N}N}$             
+0605 |                           | .}u{o[l].n.}vti=i[l].c[i]      | .N}N}$              
+0606 |                           | }u{o[l].n.}vti=i[l].c[i]{      | N}N}$               
+0607 | TNS_NORULECHAIN/NS_NORULE |                                |
+0607 | RESSTATE                  |                                |
+0607 |                           | n.}u{o[l].n.}vti=i[l].c[i      | N}N}$               
+0608 | N->n.                     | n.}u{o[l].n.}vti=i[l].c[i      | N}N}$               
+0608 | SAVESTATE: 0056           |                                |
+0608 |                           | n.}u{o[l].n.}vti=i[l].c[i      | n.}N}$              
+0609 |                           | .}u{o[l].n.}vti=i[l].c[i]      | .}N}$               
+0610 |                           | }u{o[l].n.}vti=i[l].c[i]{      | }N}$                
+0611 |                           | u{o[l].n.}vti=i[l].c[i]{o      | N}$                 
+0612 | TNS_NORULECHAIN/NS_NORULE |                                |
+0612 | RESSTATE                  |                                |
+0612 |                           | n.}u{o[l].n.}vti=i[l].c[i      | N}N}$               
+0613 | TNS_NORULECHAIN/NS_NORULE |                                |
+0613 | RESSTATE                  |                                |
+0613 |                           | i].n.}u{o[l].n.}vti=i[l].      | I].N}N}$            
+0614 | TNS_NORULECHAIN/NS_NORULE |                                |
+0614 | RESSTATE                  |                                |
+0614 |                           | o[i].n.}u{o[l].n.}vti=i[l      | X}N}$               
+0615 | X->oK.                    | o[i].n.}u{o[l].n.}vti=i[l      | X}N}$               
+0615 | SAVESTATE: 0054           |                                |
+0615 |                           | o[i].n.}u{o[l].n.}vti=i[l      | oK.}N}$             
+0616 |                           | [i].n.}u{o[l].n.}vti=i[l]      | K.}N}$              
+0617 | K->[W]                    | [i].n.}u{o[l].n.}vti=i[l]      | K.}N}$              
+0617 | SAVESTATE: 0055           |                                |
+0617 |                           | [i].n.}u{o[l].n.}vti=i[l]      | [W].}N}$            
+0618 |                           | i].n.}u{o[l].n.}vti=i[l].      | W].}N}$             
+0619 | W->i                      | i].n.}u{o[l].n.}vti=i[l].      | W].}N}$             
+0619 | SAVESTATE: 0056           |                                |
+0619 |                           | i].n.}u{o[l].n.}vti=i[l].      | i].}N}$             
+0620 |                           | ].n.}u{o[l].n.}vti=i[l].c      | ].}N}$              
+0621 |                           | .n.}u{o[l].n.}vti=i[l].c[      | .}N}$               
+0622 |                           | n.}u{o[l].n.}vti=i[l].c[i      | }N}$                
+0623 | TS_NOK/NS_NORULECHAIN     |                                |
+0623 | RESSTATE                  |                                |
+0623 |                           | i].n.}u{o[l].n.}vti=i[l].      | W].}N}$             
+0624 | W->i&W                    | i].n.}u{o[l].n.}vti=i[l].      | W].}N}$             
+0624 | SAVESTATE: 0056           |                                |
+0624 |                           | i].n.}u{o[l].n.}vti=i[l].      | i&W].}N}$           
+0625 |                           | ].n.}u{o[l].n.}vti=i[l].c      | &W].}N}$            
+0626 | TS_NOK/NS_NORULECHAIN     |                                |
+0626 | RESSTATE                  |                                |
+0626 |                           | i].n.}u{o[l].n.}vti=i[l].      | W].}N}$             
+0627 | TNS_NORULECHAIN/NS_NORULE |                                |
+0627 | RESSTATE                  |                                |
+0627 |                           | [i].n.}u{o[l].n.}vti=i[l]      | K.}N}$              
+0628 | TNS_NORULECHAIN/NS_NORULE |                                |
+0628 | RESSTATE                  |                                |
+0628 |                           | o[i].n.}u{o[l].n.}vti=i[l      | X}N}$               
+0629 | TNS_NORULECHAIN/NS_NORULE |                                |
+0629 | RESSTATE                  |                                |
+0629 |                           | i]{o[i].n.}u{o[l].n.}vti=      | R]{X}N}$            
+0630 | R->ibi                    | i]{o[i].n.}u{o[l].n.}vti=      | R]{X}N}$            
+0630 | SAVESTATE: 0053           |                                |
+0630 |                           | i]{o[i].n.}u{o[l].n.}vti=      | ibi]{X}N}$          
+0631 |                           | ]{o[i].n.}u{o[l].n.}vti=i      | bi]{X}N}$           
+0632 | TS_NOK/NS_NORULECHAIN     |                                |
+0632 | RESSTATE                  |                                |
+0632 |                           | i]{o[i].n.}u{o[l].n.}vti=      | R]{X}N}$            
+0633 | R->ibl                    | i]{o[i].n.}u{o[l].n.}vti=      | R]{X}N}$            
+0633 | SAVESTATE: 0053           |                                |
+0633 |                           | i]{o[i].n.}u{o[l].n.}vti=      | ibl]{X}N}$          
+0634 |                           | ]{o[i].n.}u{o[l].n.}vti=i      | bl]{X}N}$           
+0635 | TS_NOK/NS_NORULECHAIN     |                                |
+0635 | RESSTATE                  |                                |
+0635 |                           | i]{o[i].n.}u{o[l].n.}vti=      | R]{X}N}$            
+0636 | TNS_NORULECHAIN/NS_NORULE |                                |
+0636 | RESSTATE                  |                                |
+0636 |                           | c[i]{o[i].n.}u{o[l].n.}vt      | N}$                 
+0637 | N->c[R]{X}u{X}N           | c[i]{o[i].n.}u{o[l].n.}vt      | N}$                 
+0637 | SAVESTATE: 0052           |                                |
+0637 |                           | c[i]{o[i].n.}u{o[l].n.}vt      | c[R]{X}u{X}N}$      
+0638 |                           | [i]{o[i].n.}u{o[l].n.}vti      | [R]{X}u{X}N}$       
+0639 |                           | i]{o[i].n.}u{o[l].n.}vti=      | R]{X}u{X}N}$        
+0640 | R->i                      | i]{o[i].n.}u{o[l].n.}vti=      | R]{X}u{X}N}$        
+0640 | SAVESTATE: 0053           |                                |
+0640 |                           | i]{o[i].n.}u{o[l].n.}vti=      | i]{X}u{X}N}$        
+0641 |                           | ]{o[i].n.}u{o[l].n.}vti=i      | ]{X}u{X}N}$         
+0642 |                           | {o[i].n.}u{o[l].n.}vti=i[      | {X}u{X}N}$          
+0643 |                           | o[i].n.}u{o[l].n.}vti=i[l      | X}u{X}N}$           
+0644 | X->o[I].N                 | o[i].n.}u{o[l].n.}vti=i[l      | X}u{X}N}$           
+0644 | SAVESTATE: 0054           |                                |
+0644 |                           | o[i].n.}u{o[l].n.}vti=i[l      | o[I].N}u{X}N}$      
+0645 |                           | [i].n.}u{o[l].n.}vti=i[l]      | [I].N}u{X}N}$       
+0646 |                           | i].n.}u{o[l].n.}vti=i[l].      | I].N}u{X}N}$        
+0647 | I->i                      | i].n.}u{o[l].n.}vti=i[l].      | I].N}u{X}N}$        
+0647 | SAVESTATE: 0055           |                                |
+0647 |                           | i].n.}u{o[l].n.}vti=i[l].      | i].N}u{X}N}$        
+0648 |                           | ].n.}u{o[l].n.}vti=i[l].c      | ].N}u{X}N}$         
+0649 |                           | .n.}u{o[l].n.}vti=i[l].c[      | .N}u{X}N}$          
+0650 |                           | n.}u{o[l].n.}vti=i[l].c[i      | N}u{X}N}$           
+0651 | N->n.N                    | n.}u{o[l].n.}vti=i[l].c[i      | N}u{X}N}$           
+0651 | SAVESTATE: 0056           |                                |
+0651 |                           | n.}u{o[l].n.}vti=i[l].c[i      | n.N}u{X}N}$         
+0652 |                           | .}u{o[l].n.}vti=i[l].c[i]      | .N}u{X}N}$          
+0653 |                           | }u{o[l].n.}vti=i[l].c[i]{      | N}u{X}N}$           
+0654 | TNS_NORULECHAIN/NS_NORULE |                                |
+0654 | RESSTATE                  |                                |
+0654 |                           | n.}u{o[l].n.}vti=i[l].c[i      | N}u{X}N}$           
+0655 | N->n.                     | n.}u{o[l].n.}vti=i[l].c[i      | N}u{X}N}$           
+0655 | SAVESTATE: 0056           |                                |
+0655 |                           | n.}u{o[l].n.}vti=i[l].c[i      | n.}u{X}N}$          
+0656 |                           | .}u{o[l].n.}vti=i[l].c[i]      | .}u{X}N}$           
+0657 |                           | }u{o[l].n.}vti=i[l].c[i]{      | }u{X}N}$            
+0658 |                           | u{o[l].n.}vti=i[l].c[i]{o      | u{X}N}$             
+0659 |                           | {o[l].n.}vti=i[l].c[i]{o[      | {X}N}$              
+0660 |                           | o[l].n.}vti=i[l].c[i]{o[l      | X}N}$               
+0661 | X->o[I].N                 | o[l].n.}vti=i[l].c[i]{o[l      | X}N}$               
+0661 | SAVESTATE: 0057           |                                |
+0661 |                           | o[l].n.}vti=i[l].c[i]{o[l      | o[I].N}N}$          
+0662 |                           | [l].n.}vti=i[l].c[i]{o[l]      | [I].N}N}$           
+0663 |                           | l].n.}vti=i[l].c[i]{o[l].      | I].N}N}$            
+0664 | I->l                      | l].n.}vti=i[l].c[i]{o[l].      | I].N}N}$            
+0664 | SAVESTATE: 0058           |                                |
+0664 |                           | l].n.}vti=i[l].c[i]{o[l].      | l].N}N}$            
+0665 |                           | ].n.}vti=i[l].c[i]{o[l].n      | ].N}N}$             
+0666 |                           | .n.}vti=i[l].c[i]{o[l].n.      | .N}N}$              
+0667 |                           | n.}vti=i[l].c[i]{o[l].n.}      | N}N}$               
+0668 | N->n.N                    | n.}vti=i[l].c[i]{o[l].n.}      | N}N}$               
+0668 | SAVESTATE: 0059           |                                |
+0668 |                           | n.}vti=i[l].c[i]{o[l].n.}      | n.N}N}$             
+0669 |                           | .}vti=i[l].c[i]{o[l].n.}u      | .N}N}$              
+0670 |                           | }vti=i[l].c[i]{o[l].n.}u{      | N}N}$               
+0671 | TNS_NORULECHAIN/NS_NORULE |                                |
+0671 | RESSTATE                  |                                |
+0671 |                           | n.}vti=i[l].c[i]{o[l].n.}      | N}N}$               
+0672 | N->n.                     | n.}vti=i[l].c[i]{o[l].n.}      | N}N}$               
+0672 | SAVESTATE: 0059           |                                |
+0672 |                           | n.}vti=i[l].c[i]{o[l].n.}      | n.}N}$              
+0673 |                           | .}vti=i[l].c[i]{o[l].n.}u      | .}N}$               
+0674 |                           | }vti=i[l].c[i]{o[l].n.}u{      | }N}$                
+0675 |                           | vti=i[l].c[i]{o[l].n.}u{o      | N}$                 
+0676 | N->vti.N                  | vti=i[l].c[i]{o[l].n.}u{o      | N}$                 
+0676 | SAVESTATE: 0060           |                                |
+0676 |                           | vti=i[l].c[i]{o[l].n.}u{o      | vti.N}$             
+0677 |                           | ti=i[l].c[i]{o[l].n.}u{o[      | ti.N}$              
+0678 |                           | i=i[l].c[i]{o[l].n.}u{o[l      | i.N}$               
+0679 |                           | =i[l].c[i]{o[l].n.}u{o[l]      | .N}$                
+0680 | TS_NOK/NS_NORULECHAIN     |                                |
+0680 | RESSTATE                  |                                |
+0680 |                           | vti=i[l].c[i]{o[l].n.}u{o      | N}$                 
+0681 | N->vti=E.N                | vti=i[l].c[i]{o[l].n.}u{o      | N}$                 
+0681 | SAVESTATE: 0060           |                                |
+0681 |                           | vti=i[l].c[i]{o[l].n.}u{o      | vti=E.N}$           
+0682 |                           | ti=i[l].c[i]{o[l].n.}u{o[      | ti=E.N}$            
+0683 |                           | i=i[l].c[i]{o[l].n.}u{o[l      | i=E.N}$             
+0684 |                           | =i[l].c[i]{o[l].n.}u{o[l]      | =E.N}$              
+0685 |                           | i[l].c[i]{o[l].n.}u{o[l].      | E.N}$               
+0686 | E->i                      | i[l].c[i]{o[l].n.}u{o[l].      | E.N}$               
+0686 | SAVESTATE: 0061           |                                |
+0686 |                           | i[l].c[i]{o[l].n.}u{o[l].      | i.N}$               
+0687 |                           | [l].c[i]{o[l].n.}u{o[l].n      | .N}$                
+0688 | TS_NOK/NS_NORULECHAIN     |                                |
+0688 | RESSTATE                  |                                |
+0688 |                           | i[l].c[i]{o[l].n.}u{o[l].      | E.N}$               
+0689 | E->iK                     | i[l].c[i]{o[l].n.}u{o[l].      | E.N}$               
+0689 | SAVESTATE: 0061           |                                |
+0689 |                           | i[l].c[i]{o[l].n.}u{o[l].      | iK.N}$              
+0690 |                           | [l].c[i]{o[l].n.}u{o[l].n      | K.N}$               
+0691 | K->[W]                    | [l].c[i]{o[l].n.}u{o[l].n      | K.N}$               
+0691 | SAVESTATE: 0062           |                                |
+0691 |                           | [l].c[i]{o[l].n.}u{o[l].n      | [W].N}$             
+0692 |                           | l].c[i]{o[l].n.}u{o[l].n.      | W].N}$              
+0693 | W->l                      | l].c[i]{o[l].n.}u{o[l].n.      | W].N}$              
+0693 | SAVESTATE: 0063           |                                |
+0693 |                           | l].c[i]{o[l].n.}u{o[l].n.      | l].N}$              
+0694 |                           | ].c[i]{o[l].n.}u{o[l].n.}      | ].N}$               
+0695 |                           | .c[i]{o[l].n.}u{o[l].n.}v      | .N}$                
+0696 |                           | c[i]{o[l].n.}u{o[l].n.}vt      | N}$                 
+0697 | N->c[R]{X}N               | c[i]{o[l].n.}u{o[l].n.}vt      | N}$                 
+0697 | SAVESTATE: 0064           |                                |
+0697 |                           | c[i]{o[l].n.}u{o[l].n.}vt      | c[R]{X}N}$          
+0698 |                           | [i]{o[l].n.}u{o[l].n.}vti      | [R]{X}N}$           
+0699 |                           | i]{o[l].n.}u{o[l].n.}vti=      | R]{X}N}$            
+0700 | R->i                      | i]{o[l].n.}u{o[l].n.}vti=      | R]{X}N}$            
+0700 | SAVESTATE: 0065           |                                |
+0700 |                           | i]{o[l].n.}u{o[l].n.}vti=      | i]{X}N}$            
+0701 |                           | ]{o[l].n.}u{o[l].n.}vti=l      | ]{X}N}$             
+0702 |                           | {o[l].n.}u{o[l].n.}vti=l.      | {X}N}$              
+0703 |                           | o[l].n.}u{o[l].n.}vti=l.}      | X}N}$               
+0704 | X->o[I].N                 | o[l].n.}u{o[l].n.}vti=l.}      | X}N}$               
+0704 | SAVESTATE: 0066           |                                |
+0704 |                           | o[l].n.}u{o[l].n.}vti=l.}      | o[I].N}N}$          
+0705 |                           | [l].n.}u{o[l].n.}vti=l.}       | [I].N}N}$           
+0706 |                           | l].n.}u{o[l].n.}vti=l.}        | I].N}N}$            
+0707 | I->l                      | l].n.}u{o[l].n.}vti=l.}        | I].N}N}$            
+0707 | SAVESTATE: 0067           |                                |
+0707 |                           | l].n.}u{o[l].n.}vti=l.}        | l].N}N}$            
+0708 |                           | ].n.}u{o[l].n.}vti=l.}         | ].N}N}$             
+0709 |                           | .n.}u{o[l].n.}vti=l.}          | .N}N}$              
+0710 |                           | n.}u{o[l].n.}vti=l.}           | N}N}$               
+0711 | N->n.N                    | n.}u{o[l].n.}vti=l.}           | N}N}$               
+0711 | SAVESTATE: 0068           |                                |
+0711 |                           | n.}u{o[l].n.}vti=l.}           | n.N}N}$             
+0712 |                           | .}u{o[l].n.}vti=l.}            | .N}N}$              
+0713 |                           | }u{o[l].n.}vti=l.}             | N}N}$               
+0714 | TNS_NORULECHAIN/NS_NORULE |                                |
+0714 | RESSTATE                  |                                |
+0714 |                           | n.}u{o[l].n.}vti=l.}           | N}N}$               
+0715 | N->n.                     | n.}u{o[l].n.}vti=l.}           | N}N}$               
+0715 | SAVESTATE: 0068           |                                |
+0715 |                           | n.}u{o[l].n.}vti=l.}           | n.}N}$              
+0716 |                           | .}u{o[l].n.}vti=l.}            | .}N}$               
+0717 |                           | }u{o[l].n.}vti=l.}             | }N}$                
+0718 |                           | u{o[l].n.}vti=l.}              | N}$                 
+0719 | TNS_NORULECHAIN/NS_NORULE |                                |
+0719 | RESSTATE                  |                                |
+0719 |                           | n.}u{o[l].n.}vti=l.}           | N}N}$               
+0720 | TNS_NORULECHAIN/NS_NORULE |                                |
+0720 | RESSTATE                  |                                |
+0720 |                           | l].n.}u{o[l].n.}vti=l.}        | I].N}N}$            
+0721 | TNS_NORULECHAIN/NS_NORULE |                                |
+0721 | RESSTATE                  |                                |
+0721 |                           | o[l].n.}u{o[l].n.}vti=l.}      | X}N}$               
+0722 | X->oK.                    | o[l].n.}u{o[l].n.}vti=l.}      | X}N}$               
+0722 | SAVESTATE: 0066           |                                |
+0722 |                           | o[l].n.}u{o[l].n.}vti=l.}      | oK.}N}$             
+0723 |                           | [l].n.}u{o[l].n.}vti=l.}       | K.}N}$              
+0724 | K->[W]                    | [l].n.}u{o[l].n.}vti=l.}       | K.}N}$              
+0724 | SAVESTATE: 0067           |                                |
+0724 |                           | [l].n.}u{o[l].n.}vti=l.}       | [W].}N}$            
+0725 |                           | l].n.}u{o[l].n.}vti=l.}        | W].}N}$             
+0726 | W->l                      | l].n.}u{o[l].n.}vti=l.}        | W].}N}$             
+0726 | SAVESTATE: 0068           |                                |
+0726 |                           | l].n.}u{o[l].n.}vti=l.}        | l].}N}$             
+0727 |                           | ].n.}u{o[l].n.}vti=l.}         | ].}N}$              
+0728 |                           | .n.}u{o[l].n.}vti=l.}          | .}N}$               
+0729 |                           | n.}u{o[l].n.}vti=l.}           | }N}$                
+0730 | TS_NOK/NS_NORULECHAIN     |                                |
+0730 | RESSTATE                  |                                |
+0730 |                           | l].n.}u{o[l].n.}vti=l.}        | W].}N}$             
+0731 | W->l&W                    | l].n.}u{o[l].n.}vti=l.}        | W].}N}$             
+0731 | SAVESTATE: 0068           |                                |
+0731 |                           | l].n.}u{o[l].n.}vti=l.}        | l&W].}N}$           
+0732 |                           | ].n.}u{o[l].n.}vti=l.}         | &W].}N}$            
+0733 | TS_NOK/NS_NORULECHAIN     |                                |
+0733 | RESSTATE                  |                                |
+0733 |                           | l].n.}u{o[l].n.}vti=l.}        | W].}N}$             
+0734 | TNS_NORULECHAIN/NS_NORULE |                                |
+0734 | RESSTATE                  |                                |
+0734 |                           | [l].n.}u{o[l].n.}vti=l.}       | K.}N}$              
+0735 | TNS_NORULECHAIN/NS_NORULE |                                |
+0735 | RESSTATE                  |                                |
+0735 |                           | o[l].n.}u{o[l].n.}vti=l.}      | X}N}$               
+0736 | TNS_NORULECHAIN/NS_NORULE |                                |
+0736 | RESSTATE                  |                                |
+0736 |                           | i]{o[l].n.}u{o[l].n.}vti=      | R]{X}N}$            
+0737 | R->ibi                    | i]{o[l].n.}u{o[l].n.}vti=      | R]{X}N}$            
+0737 | SAVESTATE: 0065           |                                |
+0737 |                           | i]{o[l].n.}u{o[l].n.}vti=      | ibi]{X}N}$          
+0738 |                           | ]{o[l].n.}u{o[l].n.}vti=l      | bi]{X}N}$           
+0739 | TS_NOK/NS_NORULECHAIN     |                                |
+0739 | RESSTATE                  |                                |
+0739 |                           | i]{o[l].n.}u{o[l].n.}vti=      | R]{X}N}$            
+0740 | R->ibl                    | i]{o[l].n.}u{o[l].n.}vti=      | R]{X}N}$            
+0740 | SAVESTATE: 0065           |                                |
+0740 |                           | i]{o[l].n.}u{o[l].n.}vti=      | ibl]{X}N}$          
+0741 |                           | ]{o[l].n.}u{o[l].n.}vti=l      | bl]{X}N}$           
+0742 | TS_NOK/NS_NORULECHAIN     |                                |
+0742 | RESSTATE                  |                                |
+0742 |                           | i]{o[l].n.}u{o[l].n.}vti=      | R]{X}N}$            
+0743 | TNS_NORULECHAIN/NS_NORULE |                                |
+0743 | RESSTATE                  |                                |
+0743 |                           | c[i]{o[l].n.}u{o[l].n.}vt      | N}$                 
+0744 | N->c[R]{X}u{X}N           | c[i]{o[l].n.}u{o[l].n.}vt      | N}$                 
+0744 | SAVESTATE: 0064           |                                |
+0744 |                           | c[i]{o[l].n.}u{o[l].n.}vt      | c[R]{X}u{X}N}$      
+0745 |                           | [i]{o[l].n.}u{o[l].n.}vti      | [R]{X}u{X}N}$       
+0746 |                           | i]{o[l].n.}u{o[l].n.}vti=      | R]{X}u{X}N}$        
+0747 | R->i                      | i]{o[l].n.}u{o[l].n.}vti=      | R]{X}u{X}N}$        
+0747 | SAVESTATE: 0065           |                                |
+0747 |                           | i]{o[l].n.}u{o[l].n.}vti=      | i]{X}u{X}N}$        
+0748 |                           | ]{o[l].n.}u{o[l].n.}vti=l      | ]{X}u{X}N}$         
+0749 |                           | {o[l].n.}u{o[l].n.}vti=l.      | {X}u{X}N}$          
+0750 |                           | o[l].n.}u{o[l].n.}vti=l.}      | X}u{X}N}$           
+0751 | X->o[I].N                 | o[l].n.}u{o[l].n.}vti=l.}      | X}u{X}N}$           
+0751 | SAVESTATE: 0066           |                                |
+0751 |                           | o[l].n.}u{o[l].n.}vti=l.}      | o[I].N}u{X}N}$      
+0752 |                           | [l].n.}u{o[l].n.}vti=l.}       | [I].N}u{X}N}$       
+0753 |                           | l].n.}u{o[l].n.}vti=l.}        | I].N}u{X}N}$        
+0754 | I->l                      | l].n.}u{o[l].n.}vti=l.}        | I].N}u{X}N}$        
+0754 | SAVESTATE: 0067           |                                |
+0754 |                           | l].n.}u{o[l].n.}vti=l.}        | l].N}u{X}N}$        
+0755 |                           | ].n.}u{o[l].n.}vti=l.}         | ].N}u{X}N}$         
+0756 |                           | .n.}u{o[l].n.}vti=l.}          | .N}u{X}N}$          
+0757 |                           | n.}u{o[l].n.}vti=l.}           | N}u{X}N}$           
+0758 | N->n.N                    | n.}u{o[l].n.}vti=l.}           | N}u{X}N}$           
+0758 | SAVESTATE: 0068           |                                |
+0758 |                           | n.}u{o[l].n.}vti=l.}           | n.N}u{X}N}$         
+0759 |                           | .}u{o[l].n.}vti=l.}            | .N}u{X}N}$          
+0760 |                           | }u{o[l].n.}vti=l.}             | N}u{X}N}$           
+0761 | TNS_NORULECHAIN/NS_NORULE |                                |
+0761 | RESSTATE                  |                                |
+0761 |                           | n.}u{o[l].n.}vti=l.}           | N}u{X}N}$           
+0762 | N->n.                     | n.}u{o[l].n.}vti=l.}           | N}u{X}N}$           
+0762 | SAVESTATE: 0068           |                                |
+0762 |                           | n.}u{o[l].n.}vti=l.}           | n.}u{X}N}$          
+0763 |                           | .}u{o[l].n.}vti=l.}            | .}u{X}N}$           
+0764 |                           | }u{o[l].n.}vti=l.}             | }u{X}N}$            
+0765 |                           | u{o[l].n.}vti=l.}              | u{X}N}$             
+0766 |                           | {o[l].n.}vti=l.}               | {X}N}$              
+0767 |                           | o[l].n.}vti=l.}                | X}N}$               
+0768 | X->o[I].N                 | o[l].n.}vti=l.}                | X}N}$               
+0768 | SAVESTATE: 0069           |                                |
+0768 |                           | o[l].n.}vti=l.}                | o[I].N}N}$          
+0769 |                           | [l].n.}vti=l.}                 | [I].N}N}$           
+0770 |                           | l].n.}vti=l.}                  | I].N}N}$            
+0771 | I->l                      | l].n.}vti=l.}                  | I].N}N}$            
+0771 | SAVESTATE: 0070           |                                |
+0771 |                           | l].n.}vti=l.}                  | l].N}N}$            
+0772 |                           | ].n.}vti=l.}                   | ].N}N}$             
+0773 |                           | .n.}vti=l.}                    | .N}N}$              
+0774 |                           | n.}vti=l.}                     | N}N}$               
+0775 | N->n.N                    | n.}vti=l.}                     | N}N}$               
+0775 | SAVESTATE: 0071           |                                |
+0775 |                           | n.}vti=l.}                     | n.N}N}$             
+0776 |                           | .}vti=l.}                      | .N}N}$              
+0777 |                           | }vti=l.}                       | N}N}$               
+0778 | TNS_NORULECHAIN/NS_NORULE |                                |
+0778 | RESSTATE                  |                                |
+0778 |                           | n.}vti=l.}                     | N}N}$               
+0779 | N->n.                     | n.}vti=l.}                     | N}N}$               
+0779 | SAVESTATE: 0071           |                                |
+0779 |                           | n.}vti=l.}                     | n.}N}$              
+0780 |                           | .}vti=l.}                      | .}N}$               
+0781 |                           | }vti=l.}                       | }N}$                
+0782 |                           | vti=l.}                        | N}$                 
+0783 | N->vti.N                  | vti=l.}                        | N}$                 
+0783 | SAVESTATE: 0072           |                                |
+0783 |                           | vti=l.}                        | vti.N}$             
+0784 |                           | ti=l.}                         | ti.N}$              
+0785 |                           | i=l.}                          | i.N}$               
+0786 |                           | =l.}                           | .N}$                
+0787 | TS_NOK/NS_NORULECHAIN     |                                |
+0787 | RESSTATE                  |                                |
+0787 |                           | vti=l.}                        | N}$                 
+0788 | N->vti=E.N                | vti=l.}                        | N}$                 
+0788 | SAVESTATE: 0072           |                                |
+0788 |                           | vti=l.}                        | vti=E.N}$           
+0789 |                           | ti=l.}                         | ti=E.N}$            
+0790 |                           | i=l.}                          | i=E.N}$             
+0791 |                           | =l.}                           | =E.N}$              
+0792 |                           | l.}                            | E.N}$               
+0793 | E->l                      | l.}                            | E.N}$               
+0793 | SAVESTATE: 0073           |                                |
+0793 |                           | l.}                            | l.N}$               
+0794 |                           | .}                             | .N}$                
+0795 |                           | }                              | N}$                 
+0796 | TNS_NORULECHAIN/NS_NORULE |                                |
+0796 | RESSTATE                  |                                |
+0796 |                           | l.}                            | E.N}$               
+0797 | E->lM                     | l.}                            | E.N}$               
+0797 | SAVESTATE: 0073           |                                |
+0797 |                           | l.}                            | lM.N}$              
+0798 |                           | .}                             | M.N}$               
+0799 | TNS_NORULECHAIN/NS_NORULE |                                |
+0799 | RESSTATE                  |                                |
+0799 |                           | l.}                            | E.N}$               
+0800 | TNS_NORULECHAIN/NS_NORULE |                                |
+0800 | RESSTATE                  |                                |
+0800 |                           | vti=l.}                        | N}$                 
+0801 | N->vti.                   | vti=l.}                        | N}$                 
+0801 | SAVESTATE: 0072           |                                |
+0801 |                           | vti=l.}                        | vti.}$              
+0802 |                           | ti=l.}                         | ti.}$               
+0803 |                           | i=l.}                          | i.}$                
+0804 |                           | =l.}                           | .}$                 
+0805 | TS_NOK/NS_NORULECHAIN     |                                |
+0805 | RESSTATE                  |                                |
+0805 |                           | vti=l.}                        | N}$                 
+0806 | N->vti=E.                 | vti=l.}                        | N}$                 
+0806 | SAVESTATE: 0072           |                                |
+0806 |                           | vti=l.}                        | vti=E.}$            
+0807 |                           | ti=l.}                         | ti=E.}$             
+0808 |                           | i=l.}                          | i=E.}$              
+0809 |                           | =l.}                           | =E.}$               
+0810 |                           | l.}                            | E.}$                
+0811 | E->l                      | l.}                            | E.}$                
+0811 | SAVESTATE: 0073           |                                |
+0811 |                           | l.}                            | l.}$                
+0812 |                           | .}                             | .}$                 
+0813 |                           | }                              | }$                  
+0814 |                           |                                | $                   
+0815 | LENTA_END                 |                                |
+0816 | ------>LENTA_END          |                                |
+-----------------------------------------------------------------------------------------
+0000 | Kоличество символов на ленте: 188. Синтаксический анализ выполнен успешно!
+
+---------------------------------- ДЕРЕВО РАЗБОРА ---------------------------------------
+0000 | S->ftiFBS           
+0003 | F->[P]              
+0004 | P->ti&P             
+0007 | P->ti               
+0010 | B->{Nr[I].}         
+0011 | N->vti.N            
+0015 | N->i=E.             
+0017 | E->(E)M             
+0018 | E->iM               
+0019 | M->sE               
+0020 | E->i                
+0022 | M->sE               
+0023 | E->l                
+0027 | I->i                
+0031 | S->ftiFBS           
+0034 | F->[P]              
+0035 | P->ti               
+0038 | B->{Nr[I].}         
+0039 | N->vti.N            
+0043 | N->vti.N            
+0047 | N->i=E.N            
+0049 | E->iM               
+0050 | M->sE               
+0051 | E->l                
+0053 | N->c[R]{X}u{X}      
+0055 | R->ibl              
+0060 | X->i=E.             
+0062 | E->l                
+0067 | X->i=E.             
+0069 | E->l                
+0074 | I->i                
+0078 | S->g{N}             
+0080 | N->vti=E.N          
+0084 | E->iK               
+0085 | K->[W]              
+0086 | W->l&W              
+0088 | W->l                
+0091 | N->o[I].N           
+0093 | I->i                
+0096 | N->n.N              
+0098 | N->vti=E.N          
+0102 | E->!K               
+0103 | K->[W]              
+0104 | W->l                
+0107 | N->o[I].N           
+0109 | I->i                
+0112 | N->n.N              
+0114 | N->vti=E.N          
+0118 | E->l                
+0120 | N->vti=E.N          
+0124 | E->l                
+0126 | N->c[R]{X}u{X}N     
+0128 | R->i                
+0131 | X->o[I].N           
+0133 | I->i                
+0136 | N->n.               
+0141 | X->o[I].N           
+0143 | I->l                
+0146 | N->n.               
+0149 | N->vti=E.N          
+0153 | E->iK               
+0154 | K->[W]              
+0155 | W->l                
+0158 | N->c[R]{X}u{X}N     
+0160 | R->i                
+0163 | X->o[I].N           
+0165 | I->l                
+0168 | N->n.               
+0173 | X->o[I].N           
+0175 | I->l                
+0178 | N->n.               
+0181 | N->vti=E.           
+0185 | E->l                
+-----------------------------------------------------------------------------------------
+     | Польская запись построена успешно.
+-----------------------------------------------------------------------------------------
